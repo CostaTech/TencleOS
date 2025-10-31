@@ -29,7 +29,8 @@ print("""
 [4] Open Tencle-Time
 [5] Open Tencle-game(flappybird)
 [6] Open Tencle-game(slamdunk)
-[7] Quit Tencle-Os Safley
+[7] Open Tencle-game(Minecraft)
+[8] Quit Tencle-Os Safley
 """)
 select = input("[?]: ")
 
@@ -51,10 +52,9 @@ if select == '5':
 if select == '6':
     os.startfile('slam dunk.py')
 
-
 if select == '7':
+    os.startfile('minecraft.py')
+
+
+if select == '8':
     quit()
-
-
-
-
