@@ -57,9 +57,10 @@ if select == '7':
     os.startfile('minecraft.py')
 
 if select == '8':
-    os.startfile('terext.py')
+    os.startfile('terextsocial(incomplete).py')
 
 
 if select == '9':
     quit()
+
 
