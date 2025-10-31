@@ -6,6 +6,7 @@ To play Flappy Bird, you need to download pygame and create an “Images” fold
 Then, place all .png files except “grass.png” in the images folder.
 To play Minecraft, you need to download ursina. 
 To download both pygame and ursina, go to the terminal and type pip install ursina and pip install pygame.
+For operating system issues, please contact me on Discord username: costantinoofficial
 
 
 by CostaTech
