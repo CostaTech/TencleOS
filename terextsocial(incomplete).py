@@ -14,21 +14,37 @@ print("""
 
 
 
-print(“Hello, please enter your name to register (this information will not be made public)”)
-username = input(‘Enter your name: ’)
+print("""
+████████╗███████╗██████╗ ███████╗██╗  ██╗████████╗
+╚══██╔══╝██╔════╝██╔══██╗██╔════╝╚██╗██╔╝╚══██╔══╝
+   ██║   █████╗  ██████╔╝█████╗   ╚███╔╝    ██║   
+   ██║   ██╔══╝  ██╔══██╗██╔══╝   ██╔██╗    ██║   
+   ██║   ███████╗██║  ██║███████╗██╔╝ ██╗   ██║   
+   ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝   
+                                                  
+""")
+
+
+
+
+print("ciao scrivi il tuo nome per registrarti(questa informazione non saranno rese pubbliche)")
+username = input('Enter your name: ')
 print(username)
-print(“Okay, now enter your surname below (this information will not be made public)”)
-Surname = input(“Enter your surname: ”)
+print(" Ok adesso il tuo cognome qui sotto(questa informazione non saranno rese pubbliche)")
+Surname = input("Enter your surname: ")
 print(Surname)
-print(“Ok, now enter your nickname. This name will be made public, so don't use your real name”)
-Nickname = input(“Enter your Nickname: ”)
+print("Ok adesso inserisci il tuo nickname questo nome sara reso pubblico quindi non mettere quello vero")
+Nickname = input("Enter your Nickname: ")
 print(Nickname)
-print(“Ok, perfect. Now enter your Gmail address (this information will not be made public”)
-Gmail = input(“Enter your Gmail: ”)
+print("Ok perfetto adesso insersci la gmail(questa inforamazione non sara rese pubblica")
+Gmail = input("Enter your Gmail: ")
 print(Gmail)
-print(“Last thing, your password. This information will not be made public”)
-Password = input(“Enter your Password: ”)
+print("Ultima cosa la password e questa info soprattutto non sara resa pubblica")
+Password = input("Enter your Password: ")
 print(Password)
-print(“Perfect! Your account has been successfully created”)
-input(“”)
+print("Perfetto! il tuo account è stato creato con successo")
+input("")
+      
+
+
       
