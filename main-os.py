@@ -23,11 +23,13 @@ print("Welcome " + l_n + "!")
 print("Today is: " + time.strftime("%m%d%y"))
 
 print("""
-[1] Open Google In Rudolf-Browser
-[2] Open Rudolf-Pad
-[3] Open Rudolf-Explorer
-[4] Open Rudolf-Time
-[5] Quit Rudolf-Os Safley
+[1] Open Google In Tencle-Browser
+[2] Open Tencle-Pad
+[3] Open Tencle-Explorer
+[4] Open Tencle-Time
+[5] Open Tencle-game(flappybird)
+[6] Open Tencle-game(slamdunk)
+[7] Quit Tencle-Os Safley
 """)
 select = input("[?]: ")
 
@@ -44,5 +46,15 @@ if select == '4':
     os.startfile('time.pyw')
 
 if select == '5':
+    os.startfile('flappybird.py')
+
+if select == '6':
+    os.startfile('slam dunk.py')
+
+
+if select == '7':
     quit()
+
+
+
 
