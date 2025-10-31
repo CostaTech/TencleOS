@@ -27,6 +27,7 @@ if setup == '1':
     with open('user/password.txt', "w") as f:
         f.writelines(pas)
     print("Setup Complete!")
+    os.startfile('main-os.py')
     time.sleep(3)
     quit()
 
@@ -49,4 +50,7 @@ while True:
         quit()
     else:
         print("Wrong Password!")
+
+
+
 
