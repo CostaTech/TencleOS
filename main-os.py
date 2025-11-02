@@ -30,9 +30,11 @@ print("""
 [5] Open Tencle-game(flappybird)
 [6] Open Tencle-game(slamdunk)
 [7] Open Tencle-game(Minecraft)
-[8] Open Tencle-Social(Terext)
-[9] Open Tencle-calculator
-[10] Quit Tencle-Os Safley
+[8] Open Tencle-game(Snake)     
+[9] Open Tencle-Social(Terext)
+[10] Open Tencle-calculator
+[1] Open Tencle-Store
+[12] Quit Tencle-Os Safley
 """)
 select = input("[?]: ")
 
@@ -58,11 +60,18 @@ if select == '7':
     os.startfile('minecraft.py')
 
 if select == '8':
-    os.startfile('terextsocial(incomplete).py')
+    os.startfile('snake.py')
 
 if select == '9':
-    os.startfile('calculator.py')
-
+    os.startfile('terextsocial(incomplete).py')
 
 if select == '10':
+    os.startfile('calculator.py')
+    
+    
+if select == '11':
+    os.startfile('index.html')
+
+
+if select == '12':
     quit()
