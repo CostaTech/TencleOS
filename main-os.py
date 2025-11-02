@@ -33,7 +33,7 @@ print("""
 [8] Open Tencle-game(Snake)     
 [9] Open Tencle-Social(Terext)
 [10] Open Tencle-calculator
-[1] Open Tencle-Store
+[11] Open Tencle-Store
 [12] Quit Tencle-Os Safley
 """)
 select = input("[?]: ")
@@ -75,3 +75,4 @@ if select == '11':
 
 if select == '12':
     quit()
+
