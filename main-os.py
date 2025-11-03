@@ -33,8 +33,9 @@ print("""
 [8] Open Tencle-game(Snake)     
 [9] Open Tencle-Social(Terext)
 [10] Open Tencle-calculator
-[11] Open Tencle-Store
-[12] Quit Tencle-Os Safley
+[11] Open Tencle-Studio code editor
+[12] Open Tencle-Store
+[13] Quit Tencle-Os Safley
 """)
 select = input("[?]: ")
 
@@ -67,12 +68,14 @@ if select == '9':
 
 if select == '10':
     os.startfile('calculator.py')
-    
-    
+
 if select == '11':
+    os.startfile('tenclestudio.py')
+    
+    
+if select == '12':
     os.startfile('index.html')
 
 
-if select == '12':
+if select == '13':
     quit()
-
