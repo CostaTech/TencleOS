@@ -403,16 +403,206 @@ Today is: 120125
 [13] Quit Tencle-Os Safely             → Exits system
 ```
 
-### 🎲 Running Individual Apps
+### 🎲 Complete Guide: How to Open & Use Each App
 
-| Method | Command | Result |
-|--------|---------|--------|
-| **Doppio Click** | `snake.bat` | Lancia Snake direttamente |
-| **Doppio Click** | `calculator.bat` | Lancia Calculator |
-| **Doppio Click** | `time.bat` | Lancia Clock |
-| **TLangIDE** | Open `snake.tl` → F5 | Esegue in IDE |
-| **Terminal** | `python tlang\tlang.py snake.tl` | Esegue da CLI |
-| **Debug Mode** | Open file → F6 | Mostra Lexer/Parser/Interpreter |
+#### 🌐 **1. Tencle-Browser (Google Search)**
+```
+Dal Menu: Digita 1 e premi Enter
+Diretto: Doppio click su browser.pyw
+
+Cosa fa: Apre una finestra con ricerca Google
+Come usare:
+  1. Inserisci termine di ricerca
+  2. Premi "Search" → apre browser predefinito
+  3. Chiudi finestra quando finisci
+```
+
+#### 📝 **2. Tencle-Pad (Text Editor)**
+```
+Dal Menu: Digita 2 e premi Enter
+Diretto: Doppio click su notepad.pyw
+
+Cosa fa: Editor di testo semplice
+Come usare:
+  1. Scrivi o incolla testo
+  2. File → Save per salvare
+  3. File → Open per aprire file esistente
+```
+
+#### 📁 **3. Tencle-Explorer (File Manager)**
+```
+Dal Menu: Digita 3 e premi Enter
+Diretto: Doppio click su explorer.pyw
+
+Cosa fa: Esplora file e cartelle
+Come usare:
+  1. Naviga tra le cartelle
+  2. Doppio click per aprire file
+  3. Tasto destro per opzioni
+```
+
+#### ⏰ **4. Tencle-Time (Clock)** [TLang]
+```
+Dal Menu: Digita 4 e premi Enter
+Diretto: Doppio click su time.bat
+TLangIDE: Apri time.tl → F5
+
+Cosa fa: Mostra orologio in tempo reale
+Output:
+  ╔══════════════════════════════╗
+  ║   TENCLE TIME & DATE SYSTEM  ║
+  ╚══════════════════════════════╝
+  Current Time: 14:30:45
+  Current Date: 2025-12-01
+```
+
+#### 🐦 **5. Flappy Bird Game**
+```
+Dal Menu: Digita 5 e premi Enter
+Diretto: Doppio click su flappybird.bat
+
+Cosa fa: Clone di Flappy Bird
+Controlli:
+  - SPAZIO: Fai saltare l'uccello
+  - ESC: Esci dal gioco
+Obiettivo: Passa tra i tubi senza colpirli
+```
+
+#### 🏀 **6. Slam Dunk (Basketball)**
+```
+Dal Menu: Digita 6 e premi Enter
+Diretto: Doppio click su slamdunk.bat
+
+Cosa fa: Gioco di basket
+Controlli:
+  - Mouse: Mira
+  - Click: Tira
+Obiettivo: Fai canestro!
+```
+
+#### ⛏️ **7. Minecraft Clone (3D)**
+```
+Dal Menu: Digita 7 e premi Enter
+Diretto: Doppio click su minecraft.bat
+
+Cosa fa: Mondo 3D stile Minecraft (Ursina engine)
+Controlli:
+  - WASD: Muovi
+  - SPAZIO: Salta
+  - Mouse: Guarda intorno
+  - Click Sinistro: Rompi blocco
+  - Click Destro: Piazza blocco
+Nota: Richiede scheda grafica 3D
+```
+
+#### 🐍 **8. Snake Game** [TLang] ⭐
+```
+Dal Menu: Digita 8 e premi Enter
+Diretto: Doppio click su snake.bat
+TLangIDE: Apri snake.tl → F5
+
+Cosa fa: Gioco classico Snake con Pygame
+Controlli:
+  - Frecce: Muovi serpente
+  - ESC: Esci
+Regole:
+  - Mangia cibo rosso = +10 punti
+  - Non colpire pareti o te stesso
+  - Il serpente cresce ad ogni cibo
+  
+Output esempio:
+  ╔════════════════════════╗
+  ║   TENCLE SNAKE GAME    ║
+  ╚════════════════════════╝
+  Score: 50
+  [Grafica Pygame con serpente verde]
+```
+
+#### 💬 **9. Tencle-Social (Terext)**
+```
+Dal Menu: Digita 9 e premi Enter
+Diretto: Doppio click su terextsocial(incomplete).py
+
+Cosa fa: Social network (incompleto)
+Stato: In sviluppo
+```
+
+#### 🧮 **10. Tencle-Calculator** [TLang] ⭐
+```
+Dal Menu: Digita 10 e premi Enter
+Diretto: Doppio click su calculator.bat
+TLangIDE: Apri calculator.tl → F5
+
+Cosa fa: Calcolatrice completa
+Come usare:
+  Enter first number: 15
+  Enter second number: 7
+  Choose operation (+, -, *, /): +
+  Result: 22.0
+
+Operazioni supportate:
+  + (addizione)
+  - (sottrazione)
+  * (moltiplicazione)
+  / (divisione)
+```
+
+#### 💻 **11. Tencle-Studio**
+```
+Stato: Non implementato
+Futuro: Editor di codice integrato
+```
+
+#### 🛒 **12. Tencle-Store**
+```
+Stato: Non implementato
+Futuro: App store per scaricare nuove app
+```
+
+#### 🚪 **13. Quit TencleOS**
+```
+Dal Menu: Digita 13 e premi Enter
+
+Cosa fa: Chiude il sistema in modo sicuro
+Output: "Goodbye! Exiting TencleOS..."
+```
+
+---
+
+### 🎯 Quick Reference Table
+
+| # | App | Launcher | Language | Difficulty | Time to Play |
+|---|-----|----------|----------|------------|--------------|
+| 1 | Browser | `browser.pyw` | Python | ⭐ Easy | 1 min |
+| 2 | Notepad | `notepad.pyw` | Python | ⭐ Easy | 2 min |
+| 3 | Explorer | `explorer.pyw` | Python | ⭐ Easy | 1 min |
+| 4 | Time | `time.bat` | **TLang** | ⭐ Easy | Instant |
+| 5 | Flappy Bird | `flappybird.bat` | Python | ⭐⭐⭐ Hard | 5-10 min |
+| 6 | Slam Dunk | `slamdunk.bat` | Python | ⭐⭐ Medium | 3-5 min |
+| 7 | Minecraft | `minecraft.bat` | Python | ⭐⭐ Medium | 10+ min |
+| 8 | Snake | `snake.bat` | **TLang** | ⭐⭐ Medium | 5-10 min |
+| 9 | Social | - | Python | - | N/A |
+| 10 | Calculator | `calculator.bat` | **TLang** | ⭐ Easy | 30 sec |
+| 11 | Studio | - | - | - | N/A |
+| 12 | Store | - | - | - | N/A |
+| 13 | Quit | - | **TLang** | ⭐ Easy | Instant |
+
+### 💡 Pro Tips
+
+**Per Sviluppatori:**
+- Usa `F6` in TLangIDE per vedere Lexer/Parser/Interpreter in debug mode
+- Modifica `config.py` per cambiare sintassi TLang
+- Leggi il codice di `snake.tl` per capire come integrare Pygame
+
+**Per Gamer:**
+- Snake è il gioco più bilanciato (né troppo facile né impossibile)
+- Minecraft richiede GPU dedicata per performance ottimali
+- Flappy Bird è difficile - non demordere!
+
+**Per Utenti:**
+- Usa TencleOS come launcher alternativo per app veloci
+- Crea le tue app TLang e aggiungile al menu
+- Cambia PIN di default in `os.tl` per sicurezza
 
 ### IDE Shortcuts
 
