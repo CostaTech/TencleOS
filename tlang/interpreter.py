@@ -101,7 +101,9 @@ class Interpreter:
     
     def visit_PrintNode(self, node):
         value = self.visit(node.expression)
-        print(value)
+        import sys
+        sys.stdout.write(str(value) + '\n')
+        sys.stdout.flush()
         return None
     
     def visit_InputNode(self, node):
