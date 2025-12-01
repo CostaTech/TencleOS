@@ -340,7 +340,7 @@ class TLangIDE:
         
         filename = filedialog.askopenfilename(
             title="Apri file TLang",
-            filetypes=[("TLang Files", "*.tlang"), ("All Files", "*.*")]
+            filetypes=[("TLang Files", "*.tl"), ("All Files", "*.*")]
         )
         
         if filename:
@@ -355,8 +355,8 @@ class TLangIDE:
     def save_file_as(self):
         filename = filedialog.asksaveasfilename(
             title="Salva file TLang",
-            defaultextension=".tlang",
-            filetypes=[("TLang Files", "*.tlang"), ("All Files", "*.*")]
+            defaultextension=".tl",
+            filetypes=[("TLang Files", "*.tl"), ("All Files", "*.*")]
         )
         
         if filename:
