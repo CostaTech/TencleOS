@@ -37,7 +37,7 @@ int << func >> ("[13] Quit Tencle-Os Safely")
 
 select_input = input("[?]: ")
 
-} elif select_input == 1 {
+<< ! >func> if select_input == 1 {
     int << func >> ("Opening browser...")
     os.startfile("browser.pyw")
 } elif select_input == 2 {

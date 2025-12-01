@@ -1,14 +1,14 @@
-# TencleOS - TLang Edition
+# 🖥️ TencleOS + TLang
 
 <div align="center">
 
-![TencleOS Logo](assets/logo.png)
+![TencleOS Logo](logo.jpeg)
 
-**A Full Operating System Interface Written in TLang**
+**Complete Operating System with 13 Applications + Custom Programming Language**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/yourusername/tlang)
-[![Version](https://img.shields.io/badge/Version-1.0-blue.svg)](https://github.com/yourusername/tencleos-tlang)
+[![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/CostaTech/TencleOS)
+[![Version](https://img.shields.io/badge/Version-1.0-blue.svg)](https://github.com/CostaTech/TencleOS/releases)
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
 
@@ -18,11 +18,11 @@
 
 ## 📖 About
 
-**TencleOS** is a custom operating system interface built entirely in **TLang**, a programming language with 100% customizable syntax. This project demonstrates the power and flexibility of TLang by implementing a complete OS menu system with integrated applications.
+**TencleOS** is a complete operating system interface with **13 integrated applications**, featuring **TLang** - a programming language with 100% customizable syntax. This project includes 4 apps written in TLang and 8 full Python applications.
 
 ### What is TLang?
 
-TLang is a revolutionary programming language where **every command can be customized**. Don't like `print()`? Change it to anything you want in `config.py`!
+TLang is a revolutionary programming language where **every command can be customized**. Don't like `print()`? Change it to `int << func >>` or anything you want in `config.py`!
 
 **Example:**
 ```tlang
