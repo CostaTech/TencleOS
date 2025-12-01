@@ -39,6 +39,7 @@ class TokenType(Enum):
     MODULO = auto()
     EQUALS = auto()
     EQUAL_EQUAL = auto()
+    NOT = auto()              # !
     NOT_EQUAL = auto()
     LESS = auto()
     GREATER = auto()
@@ -293,6 +294,7 @@ class Lexer:
                 ']': TokenType.RBRACKET,
                 ',': TokenType.COMMA,
                 '.': TokenType.DOT,
+                '!': TokenType.NOT,
             }
             
             if char in single_char_tokens:
