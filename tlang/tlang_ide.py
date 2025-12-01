@@ -22,6 +22,14 @@ class TLangIDE:
         self.root.title("TLang IDE")
         self.root.geometry("1200x800")
         
+        # Imposta l'icona della finestra
+        icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'icon.ico')
+        if os.path.exists(icon_path):
+            try:
+                self.root.iconbitmap(icon_path)
+            except:
+                pass  # Ignora errori se l'icona non può essere caricata
+        
         # File corrente
         self.current_file = None
         self.file_modified = False
