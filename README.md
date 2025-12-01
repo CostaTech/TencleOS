@@ -1,4 +1,4 @@
-# TencleOS 
+# TencleOS - TLang Edition
 
 <div align="center">
 
@@ -442,6 +442,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### TencleOS Main Menu
 ![Main Menu](screenshots/main-menu.png)
+
+### Snake Game
+![Snake Game](screenshots/snake-game.png)
 
 ### Calculator
 ![Calculator](screenshots/calculator.png)
