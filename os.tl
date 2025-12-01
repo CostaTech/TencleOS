@@ -1,3 +1,7 @@
+# TencleOS Login System
+# To change username/password: Edit lines 22 and 23 below
+# Replace "admin" with your username and "1234" with your password
+
 use os
 
 int << func >> ("      ")
@@ -10,7 +14,6 @@ int << func >> ("   ╚═╝   ╚══════╝╚═╝  ╚═══�
 int << func >> ("")
 
 int << func >> ("Login to TencleOS")
-int << func >> ("Default credentials - Username: admin | Password: 1234")
 int << func >> ("")
 
 var login_user = input("Username: ")
