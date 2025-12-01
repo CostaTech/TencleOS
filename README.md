@@ -1,4 +1,4 @@
-# TencleOS - TLang Edition
+# TencleOS 
 
 <div align="center">
 
