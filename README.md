@@ -146,16 +146,170 @@ TencleOS includes **13 integrated applications**:
 
 ---
 
-## 🎮 Usage
+## 🎮 How TencleOS Works
 
-### Starting TencleOS
+### 🔧 System Architecture
 
-1. **Open TLangIDE.exe**
-2. **Load main-os.tlang**
-3. **Press F5** to execute
-4. **Choose an option** from the menu (1-13)
+TencleOS è un sistema a 3 livelli:
 
-### Menu Options
+```
+┌─────────────────────────────────────────────────────┐
+│  LIVELLO 1: Login System (os.tl)                    │
+│  • Chiede PIN (1234)                                 │
+│  • Se corretto → lancia main-os.bat                  │
+└─────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────┐
+│  LIVELLO 2: Main Menu (main-os.tl)                  │
+│  • Mostra banner ASCII                               │
+│  • Lista 13 opzioni                                  │
+│  • Riceve input utente (1-13)                        │
+│  • Lancia app corrispondente                         │
+└─────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────┐
+│  LIVELLO 3: Applications                             │
+│  • Browser → browser.pyw (Python)                    │
+│  • Snake → snake.bat → snake.tl (TLang)              │
+│  • Calculator → calculator.bat → calculator.tl       │
+│  • Ogni app ha il suo launcher .bat                  │
+└─────────────────────────────────────────────────────┘
+```
+
+### 🚀 Starting TencleOS
+
+**Metodo 1: Esperienza Completa (con Login)**
+```bash
+# Doppio click su:
+os.bat
+
+# Output:
+Enter PIN: 1234
+Access Granted!
+[Il sistema lancia automaticamente main-os.bat]
+```
+
+**Metodo 2: Direttamente al Menu Principale**
+```bash
+# Doppio click su:
+main-os.bat
+
+# Oppure in TLangIDE:
+File → Open → main-os.tl
+Press F5
+```
+
+**Metodo 3: App Singola**
+```bash
+# Doppio click su qualsiasi .bat:
+snake.bat          # Lancia Snake game
+calculator.bat     # Lancia Calculator
+time.bat           # Lancia Clock
+```
+
+### 📝 Detailed Workflow
+
+**Passo 1 - Login (os.tl):**
+```tlang
+# Codice semplificato da os.tl
+use os
+
+int << func >> ("=== TencleOS Login ===")
+pin = input("Enter PIN: ")
+
+<< ! >func> if pin == 1234 {
+    int << func >> ("Access Granted!")
+    os.startfile("main-os.bat")  # Lancia menu principale
+} >> func << else {
+    int << func >> ("Access Denied!")
+}
+```
+
+**Passo 2 - Main Menu (main-os.tl):**
+```tlang
+# Mostra banner
+int << func >> ("████████╗███████╗...")
+int << func >> ("[1] Open Google In Tencle-Browser")
+int << func >> ("[2] Open Tencle-Pad")
+...
+
+# Riceve scelta
+select_input = input("[?]: ")
+
+# Lancia app corrispondente
+<< ! >func> if select_input == 1 {
+    os.startfile("browser.pyw")
+} elif select_input == 8 {
+    os.startfile("snake.bat")
+}
+```
+
+**Passo 3 - Esecuzione App:**
+- **.bat files** → lanciano TLang o Python
+- **.tl files** → eseguiti da TLangIDE/tlang.py
+- **.pyw files** → eseguiti da Python (senza console)
+
+### 🎯 Come Funzionano i Launcher .bat
+
+Ogni app ha un suo file `.bat` che la esegue:
+
+**snake.bat:**
+```batch
+@echo off
+cd /d "%~dp0"
+python tlang\tlang.py snake.tl
+pause
+```
+
+**calculator.bat:**
+```batch
+@echo off
+cd /d "%~dp0"
+python tlang\tlang.py calculator.tl
+pause
+```
+
+**Flusso completo:**
+```
+User → Doppio click snake.bat
+       ↓
+snake.bat → chiama python tlang\tlang.py snake.tl
+       ↓
+tlang.py → carica snake.tl
+       ↓
+Lexer → tokenizza il codice
+       ↓
+Parser → crea Abstract Syntax Tree
+       ↓
+Interpreter → esegue il gioco
+       ↓
+Output → finestra Pygame con Snake funzionante
+```
+
+### 🎮 Usage Examples
+
+**Scenario 1: Avvio Completo Sistema**
+1. Doppio click `os.bat`
+2. Inserisci PIN: `1234`
+3. Premi Enter → appare menu principale
+4. Digita `8` → lancia Snake game
+5. Gioca a Snake
+6. Chiudi Snake → torni al prompt
+7. Riapri `main-os.bat` per menu
+
+**Scenario 2: Test Singola App**
+1. Doppio click `snake.bat`
+2. Snake si avvia direttamente
+3. Gioca e chiudi
+
+**Scenario 3: Sviluppo in IDE**
+1. Apri `TLangIDE.exe`
+2. File → Open → `snake.tl`
+3. Premi `F5` → esegue in IDE
+4. Vedi output nella console IDE
+5. Modifica codice e ripremi F5
+
+### 📋 Menu Options Explained
 
 ```
 ████████╗███████╗███╗   ██╗ ██████╗██╗     ███████╗ ██████╗ ███████╗
@@ -168,36 +322,31 @@ TencleOS includes **13 integrated applications**:
 Welcome Costantino!
 Today is: 120125
 
-[1] Open Google In Tencle-Browser
-[2] Open Tencle-Pad
-[3] Open Tencle-Explorer
-[4] Open Tencle-Time
-[5] Open Tencle-game(flappybird)
-[6] Open Tencle-game(slamdunk)
-[7] Open Tencle-game(Minecraft)
-[8] Open Tencle-game(Snake)
-[9] Open Tencle-Social(Terext)
-[10] Open Tencle-calculator
-[11] Open Tencle-Studio code editor
-[12] Open Tencle-Store
-[13] Quit Tencle-Os Safely
+[1] Open Google In Tencle-Browser     → browser.pyw (Python)
+[2] Open Tencle-Pad                   → notepad.pyw (Python)
+[3] Open Tencle-Explorer               → explorer.pyw (Python)
+[4] Open Tencle-Time                   → time.bat → time.tl (TLang)
+[5] Open Tencle-game(flappybird)       → flappybird.bat → flappybird.py
+[6] Open Tencle-game(slamdunk)         → slamdunk.bat → slam dunk.py
+[7] Open Tencle-game(Minecraft)        → minecraft.bat → minecraft.py
+[8] Open Tencle-game(Snake)            → snake.bat → snake.tl (TLang)
+[9] Open Tencle-Social(Terext)         → terextsocial(incomplete).py
+[10] Open Tencle-calculator            → calculator.bat → calculator.tl (TLang)
+[11] Open Tencle-Studio code editor    → (Not implemented)
+[12] Open Tencle-Store                 → (Not implemented)
+[13] Quit Tencle-Os Safely             → Exits system
 ```
 
-### Running Individual Apps
+### 🎲 Running Individual Apps
 
-**Snake Game:**
-```bash
-# In TLangIDE
-File → Open → snake.tlang
-Press F5
-```
-
-**Calculator:**
-```bash
-# In TLangIDE  
-File → Open → calculator.tlang
-Press F5
-```
+| Method | Command | Result |
+|--------|---------|--------|
+| **Doppio Click** | `snake.bat` | Lancia Snake direttamente |
+| **Doppio Click** | `calculator.bat` | Lancia Calculator |
+| **Doppio Click** | `time.bat` | Lancia Clock |
+| **TLangIDE** | Open `snake.tl` → F5 | Esegue in IDE |
+| **Terminal** | `python tlang\tlang.py snake.tl` | Esegue da CLI |
+| **Debug Mode** | Open file → F6 | Mostra Lexer/Parser/Interpreter |
 
 ### IDE Shortcuts
 
