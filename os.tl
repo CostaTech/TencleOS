@@ -1,5 +1,4 @@
 use os
-use time
 
 int << func >> ("      ")
 int << func >> ("████████╗███████╗███╗   ██╗ ██████╗██╗     ███████╗ ██████╗ ███████╗")
@@ -27,7 +26,7 @@ var correct = off
             int << func >> ("")
             int << func >> ("Login successful! Starting TencleOS...")
             int << func >> ("")
-            os.startfile("main-os.tl")
+            os.startfile("main-os.bat")
             correct = on
         } >> func << else {
             int << func >> ("Wrong password! Try again.")
