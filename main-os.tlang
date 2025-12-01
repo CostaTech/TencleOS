@@ -69,7 +69,7 @@ select_input = input("[?]: ")
     os.startfile("calculator.bat")
 } elif select_input == 11 {
     int << func >> ("Opening Tencle Studio...")
-    os.startfile("")
+    os.startfile("TLangIDE.exe")
 } elif select_input == 12 {
     int << func >> ("Opening Tencle Store...")
     os.startfile("index.html")

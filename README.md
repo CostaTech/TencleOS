@@ -1,14 +1,14 @@
-# 🖥️ TencleOS + TLang
+# TencleOS - TLang Edition
 
 <div align="center">
 
-![TencleOS Logo](logo.jpeg)
+![TencleOS Logo](assets/logo.png)
 
-**Complete Operating System with 13 Applications + Custom Programming Language**
+**A Full Operating System Interface Written in TLang**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/CostaTech/TencleOS)
-[![Version](https://img.shields.io/badge/Version-1.0-blue.svg)](https://github.com/CostaTech/TencleOS/releases)
+[![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/yourusername/tlang)
+[![Version](https://img.shields.io/badge/Version-1.0-blue.svg)](https://github.com/yourusername/tencleos-tlang)
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
 
@@ -18,11 +18,11 @@
 
 ## 📖 About
 
-**TencleOS** is a complete operating system interface with **13 integrated applications**, featuring **TLang** - a programming language with 100% customizable syntax. This project includes 4 apps written in TLang and 8 full Python applications.
+**TencleOS** is a custom operating system interface built entirely in **TLang**, a programming language with 100% customizable syntax. This project demonstrates the power and flexibility of TLang by implementing a complete OS menu system with integrated applications.
 
 ### What is TLang?
 
-TLang is a revolutionary programming language where **every command can be customized**. Don't like `print()`? Change it to `int << func >>` or anything you want in `config.py`!
+TLang is a revolutionary programming language where **every command can be customized**. Don't like `print()`? Change it to anything you want in `config.py`!
 
 **Example:**
 ```tlang
@@ -442,6 +442,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### TencleOS Main Menu
 ![Main Menu](screenshots/main-menu.png)
+
+### Snake Game
+![Snake Game](screenshots/snake-game.png)
 
 ### Calculator
 ![Calculator](screenshots/calculator.png)
