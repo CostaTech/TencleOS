@@ -1,14 +1,15 @@
-# TencleOS - TLang Edition
+# TencleOS
 
 <div align="center">
 
 ![TencleOS Logo](assets/logo.png)
 
-**A Full Operating System Interface Written in TLang**
+**A Complete Operating System Interface Built with TLang & Python**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/yourusername/tlang)
-[![Version](https://img.shields.io/badge/Version-1.0-blue.svg)](https://github.com/yourusername/tencleos-tlang)
+[![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/CostaTech/TencleOS)
+[![Python](https://img.shields.io/badge/Language-Python-blue.svg)](https://www.python.org/)
+[![Version](https://img.shields.io/badge/Version-1.0-green.svg)](https://github.com/CostaTech/TencleOS)
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
 
@@ -55,11 +56,32 @@ TencleOS isn't trying to replace Windows or Linux. It's a **proof of concept** t
    - Understand the boot → login → menu → app workflow
    - Perfect for computer science students
 
-**The Technology Stack:**
-- **Core System:** 5 apps written in TLang (os.tl, main-os.tl, snake.tl, calculator.tl, time.tl)
-- **Extended Apps:** 8 apps in Python for advanced functionality
-- **Graphics Engine:** Pygame for 2D games, Ursina for 3D
-- **Total Size:** Only 15 MB including all assets
+**The Hybrid Technology Stack: TLang + Python**
+
+TencleOS uses a **dual-language architecture** combining the strengths of both languages:
+
+| Component | Language | Why? |
+|-----------|----------|------|
+| **Login System** | TLang | Demonstrates custom syntax for authentication |
+| **Main Menu** | TLang | Shows TLang handling user input & flow control |
+| **Snake Game** | TLang | Proves TLang can build full games with Pygame |
+| **Calculator** | TLang | Math operations in custom syntax |
+| **Clock/Timer** | TLang | Real-time display with TLang |
+| **Web Browser** | Python | Complex GUI - Python's strength |
+| **File Explorer** | Python | File I/O not yet in TLang |
+| **Text Editor** | Python | Advanced text handling |
+| **Flappy Bird** | Python | Physics engine complexity |
+| **Minecraft Clone** | Python | 3D graphics with Ursina |
+| **Other Games** | Python | Mature libraries available |
+
+**Why Not 100% TLang?**
+TLang is still evolving. File I/O and complex GUI aren't implemented yet. Rather than limit functionality, we use Python for advanced features while showcasing TLang for core OS components. This proves TLang can **coexist and integrate** with established languages.
+
+**Architecture Benefits:**
+- ✅ TLang handles the OS "shell" (login, menu, launcher)
+- ✅ Python handles the "applications" (browser, games, tools)
+- ✅ Best of both worlds: innovation + stability
+- ✅ Total Size: Only 15 MB including all assets
 
 **Why "TencleOS"?**
 The name comes from "Tentacle" - representing how the system reaches out to connect different applications, languages (TLang + Python), and user needs into one cohesive experience.
@@ -212,7 +234,174 @@ TencleOS includes **13 integrated applications**:
 
 ---
 
-## 🎮 How TencleOS Works
+## 🎮 How to Use TencleOS
+
+### 📖 Tutorial: Opening Software (3 Methods)
+
+TencleOS offre **3 modi** per aprire le applicazioni:
+
+#### **Metodo 1: Dal Menu Principale** (Raccomandato per nuovi utenti)
+
+**Passo 1 - Avvia TencleOS:**
+```bash
+# Doppio click su uno di questi file:
+os.bat           # Con login (PIN: 1234)
+main-os.bat      # Direttamente al menu
+```
+
+**Passo 2 - Vedi il Menu:**
+```
+████████╗███████╗███╗   ██╗ ██████╗██╗     ███████╗ ██████╗ ███████╗
+╚══██╔══╝██╔════╝████╗  ██║██╔════╝██║     ██╔════╝██╔═══██╗██╔════╝
+   ██║   █████╗  ██╔██╗ ██║██║     ██║     █████╗  ██║   ██║███████╗
+   ██║   ██╔══╝  ██║╚██╗██║██║     ██║     ██╔══╝  ██║   ██║╚════██║
+   ██║   ███████╗██║ ╚████║╚██████╗███████╗███████╗╚██████╔╝███████║
+   ╚═╝   ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝
+
+[1] Open Google In Tencle-Browser
+[2] Open Tencle-Pad
+[3] Open Tencle-Explorer
+[4] Open Tencle-Time
+[5] Open Tencle-game(flappybird)
+[6] Open Tencle-game(slamdunk)
+[7] Open Tencle-game(Minecraft)
+[8] Open Tencle-game(Snake)
+[9] Open Tencle-Social(Terext)
+[10] Open Tencle-calculator
+[11] Open Tencle-Studio code editor
+[12] Open Tencle-Store
+[13] Quit Tencle-Os Safely
+
+[?]:
+```
+
+**Passo 3 - Scegli App:**
+```
+# Vuoi giocare a Snake? Digita 8 e premi ENTER
+[?]: 8
+
+# Vuoi usare la calcolatrice? Digita 10 e premi ENTER
+[?]: 10
+
+# Vuoi cercare su Google? Digita 1 e premi ENTER
+[?]: 1
+```
+
+**Esempio Completo - Giocare a Snake:**
+```
+1. Doppio click su os.bat
+2. Inserisci PIN: 1234
+3. Premi ENTER → appare menu
+4. Digita: 8
+5. Premi ENTER → Snake si avvia!
+6. Gioca (frecce per muoverti)
+7. Chiudi la finestra → torni al prompt
+8. Per menu: doppio click main-os.bat
+```
+
+---
+
+#### **Metodo 2: Launcher Diretti** (Veloce per app specifiche)
+
+Ogni app ha un file `.bat` dedicato. Basta fare **doppio click**!
+
+**Lista Launcher:**
+```
+📁 TencleOS/
+├── snake.bat           ← Doppio click = Snake Game
+├── calculator.bat      ← Doppio click = Calculator
+├── time.bat            ← Doppio click = Clock
+├── flappybird.bat      ← Doppio click = Flappy Bird
+├── minecraft.bat       ← Doppio click = Minecraft
+├── slamdunk.bat        ← Doppio click = Slam Dunk
+└── explorer.bat        ← Doppio click = File Explorer
+```
+
+**Esempio - Aprire Calculator:**
+```
+1. Vai nella cartella TencleOS
+2. Trova calculator.bat
+3. Doppio click
+4. La calcolatrice si apre immediatamente!
+```
+
+**Screenshot Tutorial:**
+```
+Windows Explorer:
+┌──────────────────────────────────────┐
+│ TencleOS                              │
+├──────────────────────────────────────┤
+│ 📄 calculator.bat    ← DOPPIO CLICK   │
+│ 📄 snake.bat                          │
+│ 📄 time.bat                           │
+│ 📄 main-os.bat                        │
+└──────────────────────────────────────┘
+```
+
+---
+
+#### **Metodo 3: TLangIDE** (Per sviluppatori e modifiche)
+
+Usa l'IDE per aprire file `.tl` e modificare/eseguire codice TLang.
+
+**Passo 1 - Apri IDE:**
+```
+Doppio click su: TLangIDE.exe
+```
+
+**Passo 2 - Apri File TLang:**
+```
+1. Click su "File" in alto
+2. Click su "Open" (o premi Ctrl+O)
+3. Naviga alla cartella TencleOS
+4. Seleziona un file .tl:
+   - snake.tl
+   - calculator.tl
+   - time.tl
+   - main-os.tl
+5. Click "Open"
+```
+
+**Passo 3 - Esegui:**
+```
+Premi F5 (o click sul pulsante "Run")
+```
+
+**Passo 4 - Debug (Opzionale):**
+```
+Premi F6 per vedere:
+- Lexer tokens
+- Parser tree
+- Interpreter execution
+```
+
+**Screenshot Tutorial:**
+```
+TLangIDE Window:
+┌────────────────────────────────────────┐
+│ File  Edit  Run  Debug                 │
+├────────────────────────────────────────┤
+│ 1  use pygame                          │
+│ 2  use random                          │
+│ 3                                      │
+│ 4  int << func >> ("Snake Game!")     │
+│ 5  ...                                 │
+│                                        │
+│ [F5 = Run]  [F6 = Debug]              │
+└────────────────────────────────────────┘
+```
+
+**Esempio - Modificare Snake:**
+```
+1. Apri TLangIDE.exe
+2. File → Open → snake.tl
+3. Trova riga: speed = 10
+4. Cambia in: speed = 20  (serpente più veloce!)
+5. Premi F5
+6. Gioca alla versione modificata!
+```
+
+---
 
 ### 🔧 System Architecture
 
