@@ -39,7 +39,6 @@ class TokenType(Enum):
     MODULO = auto()
     EQUALS = auto()
     EQUAL_EQUAL = auto()
-    NOT = auto()              # !
     NOT_EQUAL = auto()
     LESS = auto()
     GREATER = auto()
