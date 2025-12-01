@@ -1,0 +1,3 @@
+int << func >> ("Test input:")
+test = input()
+int << func >> ("You entered: " + test)
