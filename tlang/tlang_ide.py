@@ -8,6 +8,7 @@ from tkinter import ttk, filedialog, messagebox, scrolledtext
 import sys
 import io
 import os
+import threading
 from contextlib import redirect_stdout, redirect_stderr
 
 # Import TLang components
@@ -397,6 +398,16 @@ class TLangIDE:
         
         code = self.editor.get("1.0", tk.END)
         
+        # Check if code contains input() - warn user
+        if "input(" in code:
+            self.append_output("⚠️ ATTENZIONE: Il codice contiene input().\n", "warning")
+            self.append_output("L'IDE potrebbe bloccarsi. Usa invece i file .bat per programmi con input.\n\n", "warning")
+        
+        # Run in separate thread to avoid blocking
+        thread = threading.Thread(target=self._execute_code, args=(code,), daemon=True)
+        thread.start()
+    
+    def _execute_code(self, code):
         # Capture stdout/stderr
         stdout_capture = io.StringIO()
         stderr_capture = io.StringIO()
@@ -411,12 +422,12 @@ class TLangIDE:
                 invalid_tokens = [t for t in tokens if t.type == TokenType.INVALID]
                 if invalid_tokens:
                     for token in invalid_tokens:
-                        self.append_output(
+                        self.root.after(0, self.append_output,
                             f"❌ ERRORE LESSICALE alla riga {token.line}, colonna {token.column}: "
                             f"carattere '{token.value}' non riconosciuto\n",
                             "error"
                         )
-                    self.set_status("Errore di sintassi")
+                    self.root.after(0, self.set_status, "Errore di sintassi")
                     return
                 
                 # Parser
@@ -428,31 +439,31 @@ class TLangIDE:
                 interpreter.run(ast)
                 
                 # Show variables
-                self.update_variables(interpreter.variables)
+                self.root.after(0, self.update_variables, interpreter.variables)
             
             # Show output
             output = stdout_capture.getvalue()
             if output:
-                self.append_output(output, "output")
+                self.root.after(0, self.append_output, output, "output")
             
             errors = stderr_capture.getvalue()
             if errors:
-                self.append_output(errors, "error")
+                self.root.after(0, self.append_output, errors, "error")
             
             if not output and not errors:
-                self.append_output("✅ Esecuzione completata (nessun output)\n", "success")
+                self.root.after(0, self.append_output, "✅ Esecuzione completata (nessun output)\n", "success")
             
-            self.set_status("✅ Esecuzione completata")
+            self.root.after(0, self.set_status, "✅ Esecuzione completata")
             
         except ParseError as e:
-            self.append_output(f"❌ ERRORE DI SINTASSI:\n{e}\n", "error")
-            self.set_status("Errore di sintassi")
+            self.root.after(0, self.append_output, f"❌ ERRORE DI SINTASSI:\n{e}\n", "error")
+            self.root.after(0, self.set_status, "Errore di sintassi")
         except TLangRuntimeError as e:
-            self.append_output(f"❌ ERRORE RUNTIME:\n{e}\n", "error")
-            self.set_status("Errore runtime")
+            self.root.after(0, self.append_output, f"❌ ERRORE RUNTIME:\n{e}\n", "error")
+            self.root.after(0, self.set_status, "Errore runtime")
         except Exception as e:
-            self.append_output(f"❌ ERRORE:\n{e}\n", "error")
-            self.set_status("Errore")
+            self.root.after(0, self.append_output, f"❌ ERRORE:\n{e}\n", "error")
+            self.root.after(0, self.set_status, "Errore")
     
     def debug_code(self):
         self.clear_debug()
