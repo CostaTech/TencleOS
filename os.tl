@@ -1,6 +1,5 @@
 # TencleOS Login System
-# To change username/password: Edit lines 22 and 23 below
-# Replace "admin" with your username and "1234" with your password
+# Simplified PIN-based login (input() string comparison not supported)
 
 use os
 
@@ -14,22 +13,17 @@ int << func >> ("   ╚═╝   ╚══════╝╚═╝  ╚═══�
 int << func >> ("")
 
 int << func >> ("Login to TencleOS")
+int << func >> ("Enter PIN code (default: 1234)")
 int << func >> ("")
 
-var login_user = input("Username: ")
-var login_pass = input("Password: ")
+var pin = input("PIN: ")
 
-<< ! >func> if login_user == "admin" {
-    << ! >func> if login_pass == "1234" {
-        int << func >> ("")
-        int << func >> ("Login successful! Starting TencleOS...")
-        int << func >> ("")
-        os.startfile("main-os.bat")
-    } >> func << else {
-        int << func >> ("")
-        int << func >> ("Wrong password! Access denied.")
-    }
+<< ! >func> if pin == 1234 {
+    int << func >> ("")
+    int << func >> ("Login successful! Starting TencleOS...")
+    int << func >> ("")
+    os.startfile("main-os.bat")
 } >> func << else {
     int << func >> ("")
-    int << func >> ("Username not found! Access denied.")
+    int << func >> ("Wrong PIN! Access denied.")
 }
