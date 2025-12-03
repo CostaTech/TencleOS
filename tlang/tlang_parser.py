@@ -53,6 +53,14 @@ class AssignNode(ASTNode):
     def __repr__(self):
         return f"Assign({self.variable_name} = {self.expression})"
 
+class AttributeAssignNode(ASTNode):
+    def __init__(self, object, attribute, expression):
+        self.object = object
+        self.attribute = attribute
+        self.expression = expression
+    def __repr__(self):
+        return f"AttributeAssign({self.object}.{self.attribute} = {self.expression})"
+
 class IfNode(ASTNode):
     def __init__(self, condition, then_block, elif_blocks=None, else_block=None):
         self.condition = condition
@@ -91,6 +99,13 @@ class FunctionDefNode(ASTNode):
         self.body = body
     def __repr__(self):
         return f"FunctionDef({self.name})"
+
+class ClassDefNode(ASTNode):
+    def __init__(self, name, body):
+        self.name = name
+        self.body = body
+    def __repr__(self):
+        return f"ClassDef({self.name})"
 
 class ReturnNode(ASTNode):
     def __init__(self, expression=None):
@@ -456,6 +471,20 @@ class Parser:
         
         return FunctionDefNode(func_name, params, body)
     
+    def parse_class_def(self):
+        """Parse: class ClassName { methods }"""
+        self.expect(TokenType.CLASS)
+        
+        if self.current_token().type != TokenType.IDENTIFIER:
+            raise ParseError(f"Atteso nome classe")
+        class_name = self.current_token().value
+        self.advance()
+        
+        self.skip_newlines()
+        body = self.parse_block()
+        
+        return ClassDefNode(class_name, body)
+    
     def parse_block(self):
         self.expect(TokenType.LBRACE)
         self.skip_newlines()
@@ -506,6 +535,9 @@ class Parser:
         if token.type == TokenType.DEF:
             return self.parse_function_def()
         
+        if token.type == TokenType.CLASS:
+            return self.parse_class_def()
+        
         if token.type == TokenType.IMPORT:
             return self.parse_import_statement()
         
@@ -527,6 +559,15 @@ class Parser:
         if token.type == TokenType.IDENTIFIER:
             if self.peek_token().type == TokenType.EQUALS:
                 return self.parse_assignment()
+            elif self.peek_token().type == TokenType.DOT:
+                # Potrebbe essere self.x = ... o chiamata metodo
+                expr = self.parse_expression()
+                # Controlla se è assegnamento attributo
+                if isinstance(expr, AttributeAccessNode) and self.current_token().type == TokenType.EQUALS:
+                    self.advance()  # skip =
+                    value = self.parse_expression()
+                    return AttributeAssignNode(expr.object, expr.attribute, value)
+                return expr
             else:
                 # Chiamata di funzione standalone
                 expr = self.parse_expression()

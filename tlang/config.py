@@ -32,6 +32,9 @@ COMANDO_DEF = "<< ! C>> New command: {" \
 "}"                  # Define function: def myFunc(x, y) { ... }
 COMANDO_RETURN = "return"            # Return value: return x + y
 
+# CLASSES
+COMANDO_CLASS = "<< CRT >>! >class<"  # Define class: << CRT >>! >class< MyClass { ... }
+
 # IMPORT / MODULES
 COMANDO_IMPORT = "use"               # Import module: use pygame
 
@@ -95,6 +98,9 @@ def get_keywords():
         # Functions
         COMANDO_DEF: 'DEF',
         COMANDO_RETURN: 'RETURN',
+        
+        # Classes
+        COMANDO_CLASS: 'CLASS',
         
         # Import
         COMANDO_IMPORT: 'IMPORT',

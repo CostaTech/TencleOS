@@ -125,6 +125,24 @@ class Interpreter:
         self.variables[var_name] = value
         return None
     
+    def visit_AttributeAssignNode(self, node):
+        """Assegnamento attributo: self.x = value"""
+        obj = self.visit(node.object)
+        attr_name = node.attribute
+        value = self.visit(node.expression)
+        
+        # Se è istanza TLang
+        if isinstance(obj, dict) and '__class_body__' in obj:
+            obj[attr_name] = value
+            return None
+        
+        # Altrimenti usa setattr Python
+        try:
+            setattr(obj, attr_name, value)
+        except Exception as e:
+            raise RuntimeError(f"Errore: impossibile settare attributo '{attr_name}': {e}")
+        return None
+    
     def visit_IfNode(self, node):
         condition = self.visit(node.condition)
         
@@ -146,7 +164,7 @@ class Interpreter:
         return None
     
     def visit_WhileNode(self, node):
-        max_iterations = 100000
+        max_iterations = 10000000
         iterations = 0
         
         while self.visit(node.condition):
@@ -194,6 +212,11 @@ class Interpreter:
         self.variables[node.name] = ('function', node.params, node.body)
         return None
     
+    def visit_ClassDefNode(self, node):
+        # Salva la classe (nome e corpo)
+        self.variables[node.name] = ('class', node.body)
+        return None
+    
     def visit_ReturnNode(self, node):
         value = None
         if node.expression:
@@ -219,12 +242,76 @@ class Interpreter:
             raise RuntimeError(f"Errore: impossibile importare modulo '{module_name}': {e}")
     
     def visit_FunctionCallNode(self, node):
-        """Chiamata funzione"""
+        """Chiamata funzione o creazione istanza classe"""
         # Valuta la funzione (può essere una variabile o un accesso attributo)
         function = self.visit(node.function)
         
         # Valuta gli argomenti
         args = [self.visit(arg) for arg in node.args]
+        
+        # Se è una classe TLang -> crea istanza
+        if isinstance(function, tuple) and function[0] == 'class':
+            _, class_body = function
+            
+            # Crea istanza (dizionario per attributi)
+            instance = {'__class_body__': class_body, '__methods__': {}}
+            
+            # Estrai metodi dal corpo della classe
+            for stmt in class_body.statements:
+                if isinstance(stmt, FunctionDefNode):
+                    instance['__methods__'][stmt.name] = (stmt.params, stmt.body)
+            
+            # Chiama __init__ se esiste
+            if '__init__' in instance['__methods__']:
+                params, body = instance['__methods__']['__init__']
+                
+                # Crea scope con self
+                old_vars = self.variables.copy()
+                self.variables['self'] = instance
+                
+                # Assegna parametri (salta self perché è già settato)
+                if len(args) != len(params) - 1:
+                    raise RuntimeError(f"Errore: __init__ richiede {len(params)-1} argomenti, ne sono stati passati {len(args)}")
+                
+                for param, arg in zip(params[1:], args):
+                    self.variables[param] = arg
+                
+                # Esegui __init__
+                try:
+                    self.visit(body)
+                except ReturnException:
+                    pass
+                
+                # Ripristina scope
+                self.variables = old_vars
+            
+            return instance
+        
+        # Se è un metodo bound (con self)
+        if isinstance(function, tuple) and function[0] == 'bound_method':
+            _, instance, params, body = function
+            
+            # Crea scope con self
+            old_vars = self.variables.copy()
+            self.variables['self'] = instance
+            
+            # Assegna parametri (salta self)
+            if len(args) != len(params) - 1:
+                raise RuntimeError(f"Errore: metodo richiede {len(params)-1} argomenti, ne sono stati passati {len(args)}")
+            
+            for param, arg in zip(params[1:], args):
+                self.variables[param] = arg
+            
+            # Esegui metodo
+            result = None
+            try:
+                self.visit(body)
+            except ReturnException as e:
+                result = e.value
+            
+            # Ripristina scope
+            self.variables = old_vars
+            return result
         
         # Se è una funzione TLang
         if isinstance(function, tuple) and function[0] == 'function':
@@ -262,6 +349,19 @@ class Interpreter:
         obj = self.visit(node.object)
         attr_name = node.attribute
         
+        # Se è un'istanza TLang
+        if isinstance(obj, dict) and '__class_body__' in obj:
+            # Controlla se è un metodo
+            if attr_name in obj['__methods__']:
+                params, body = obj['__methods__'][attr_name]
+                # Ritorna funzione bound con self
+                return ('bound_method', obj, params, body)
+            # Altrimenti è un attributo
+            if attr_name in obj:
+                return obj[attr_name]
+            raise RuntimeError(f"Errore: istanza non ha attributo '{attr_name}'")
+        
+        # Altrimenti usa getattr di Python
         try:
             return getattr(obj, attr_name)
         except AttributeError:

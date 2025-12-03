@@ -88,10 +88,10 @@ The name comes from "Tentacle" - representing how the system reaches out to conn
 
 ### 🌟 What is TLang?
 
-TLang is a revolutionary programming language where **every command can be customized**. Unlike traditional languages that lock you into their syntax, TLang lets you define your own keywords, operators, and commands in `config.py`.
+TLang is a programming language designed for building real applications with a unique syntax.
 
 **Why TLang is Different:**
-- **100% Customizable Syntax** - Change `print` to `stampa`, `if` to `se`, anything you want
+- **Unique Syntax** - Designed for clarity and expressiveness
 - **Python Library Integration** - Use pygame, ursina, and any Python module
 - **Game Development Ready** - Full support for 2D/3D game engines
 - **Educational** - Learn how lexers, parsers, and interpreters work
@@ -116,7 +116,7 @@ int << func >> ("Hello, World!")
 TencleOS began as a Python project - a collection of apps and games unified under one menu system. It was functional but limited to Python's ecosystem.
 
 **Phase 2: The TLang Revolution (Current)**
-When TLang was created with its revolutionary customizable syntax, we asked: *"Can TLang build real applications?"*
+When TLang was created with its unique syntax, we asked: *"Can TLang build real applications?"*
 
 The answer: **Convert TencleOS to TLang.**
 
@@ -173,7 +173,7 @@ TencleOS includes **13 integrated applications**:
 
 ### 🚀 TLang Features
 
-- ✅ **Custom Syntax** - Change any command in `config.py`
+- ✅ **Unique Syntax** - Innovative language design
 - ✅ **Python Integration** - Import any Python library with `use`
 - ✅ **Pygame Support** - Full game development capability
 - ✅ **Professional IDE** - Syntax highlighting & debug mode
@@ -780,7 +780,7 @@ Output: "Goodbye! Exiting TencleOS..."
 
 **Per Sviluppatori:**
 - Usa `F6` in TLangIDE per vedere Lexer/Parser/Interpreter in debug mode
-- Modifica `config.py` per cambiare sintassi TLang
+- Studia l'implementazione del lexer/parser per capire il design
 - Leggi il codice di `snake.tl` per capire come integrare Pygame
 
 **Per Gamer:**
@@ -852,6 +852,26 @@ for i in [1, 2, 3] {
 }
 ```
 
+#### Classes (OOP)
+```tlang
+# Define a class
+<< CRT >>! >class< Person {
+    << ! C>> New command: {} __init__(self, name, age) {
+        self.name = name
+        self.age = age
+    }
+    
+    << ! C>> New command: {} greet(self) {
+        int << func >> ("Hello, I'm " + self.name)
+        int << func >> ("I'm " + str(self.age) + " years old")
+    }
+}
+
+# Create instance
+var person = Person("Alice", 25)
+person.greet()
+```
+
 #### Importing Libraries
 ```tlang
 use pygame
@@ -873,23 +893,19 @@ for num in numbers {
 }
 ```
 
-### Customizing TLang Syntax
+### TLang Syntax
 
-Edit `config.py` to change commands:
+TLang uses a unique syntax designed for expressiveness:
 
-```python
-# config.py
-COMANDO_PRINT = "stampa"  # Change print command
-COMANDO_IF = "se"         # Change if command
-COMANDO_WHILE = "mentre"  # Change while command
-```
-
-Now you can write:
 ```tlang
-stampa ("Ciao!")
+int << func >> ("Hello, World!")
 
-se if x > 5 {
-    stampa ("Grande!")
+<< ! >func> if x > 5 {
+    int << func >> ("Greater than 5!")
+}
+
+<<While>>! <on> running {
+    int << func >> ("Running...")
 }
 ```
 
@@ -1193,8 +1209,8 @@ A: No! TLangIDE.exe is completely standalone (8.99 MB).
 **Q: What's the login PIN?**  
 A: Default PIN is **1234**. You can change it in `os.tl`.
 
-**Q: Can I modify the TLang syntax?**  
-A: Yes! Edit `tlang/config.py` to change any command. Want Italian commands? Spanish? Make your own!
+**Q: Can I study the TLang implementation?**  
+A: Yes! The lexer, parser, and interpreter are all open source. Study the code to learn language design.
 
 **Q: How do I run TencleOS?**  
 A: Run `os.bat` for full experience with login, or open `main-os.tl` in TLangIDE and press F5.
