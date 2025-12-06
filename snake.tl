@@ -28,6 +28,10 @@ snake_y = 200
 dir_x = BLOCK
 dir_y = 0
 
+# Snake body (list of segments)
+snake_body = [[300, 200]]
+snake_length = 1
+
 # Food position
 food_x = 240
 food_y = 160
@@ -73,6 +77,9 @@ running = on
     snake_x = snake_x + dir_x
     snake_y = snake_y + dir_y
     
+    # Add new head to body
+    snake_body.append([snake_x, snake_y])
+    
     # Check boundaries
     << ! >func> if snake_x < 0 or snake_x >= WIDTH or snake_y < 0 or snake_y >= HEIGHT {
         int << func >> ("================================")
@@ -84,15 +91,24 @@ running = on
     # Check food collision
     << ! >func> if snake_x == food_x and snake_y == food_y {
         score = score + 1
+        snake_length = snake_length + 1
         food_x = random.randint(0, 29) * BLOCK
         food_y = random.randint(0, 19) * BLOCK
+    }
+    
+    # Keep snake at correct length (remove tail if not eating)
+    use builtins
+    << ! >func> if builtins.len(snake_body) > snake_length {
+        snake_body.pop(0)
     }
     
     # Draw everything
     screen.fill(WHITE)
     
-    # Draw snake head
-    pygame.draw.rect(screen, GREEN, [snake_x, snake_y, BLOCK, BLOCK])
+    # Draw snake body
+    for segment in snake_body {
+        pygame.draw.rect(screen, GREEN, [segment[0], segment[1], BLOCK, BLOCK])
+    }
     
     # Draw food
     pygame.draw.rect(screen, RED, [food_x, food_y, BLOCK, BLOCK])

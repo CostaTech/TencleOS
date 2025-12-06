@@ -220,6 +220,45 @@ Prima di pubblicare, verifica:
 
 ---
 
+## 🔧 COME USARE TLangIDE.exe vs Python
+
+### ⚠️ IMPORTANTE: TLangIDE.exe NON include pygame/librerie!
+
+**TLangIDE.exe** è un editor/IDE per scrivere codice TLang, ma:
+- ❌ NON può eseguire giochi (manca pygame)
+- ❌ NON può eseguire programmi con librerie esterne
+- ✅ Può editare file .tl
+- ✅ Può controllare la sintassi
+
+### 📋 Quando usare cosa:
+
+| Caso | Usa |
+|------|-----|
+| **Scrivere/modificare codice** | TLangIDE.exe |
+| **Eseguire Snake, Flappy Bird** | `snake.bat` / `flappybird.bat` |
+| **Eseguire programmi TLang** | `python tlang\tlang.py file.tl` |
+| **Programmi con input()** | `.bat` (mai TLangIDE.exe) |
+
+### ✅ Metodo corretto per eseguire giochi:
+
+```bat
+# Doppio click su:
+snake.bat          # Per Snake
+flappybird.bat     # Per Flappy Bird
+calculator.bat     # Per Calcolatrice
+time.bat           # Per Orologio
+```
+
+### ❌ Errore comune:
+```
+"Aprire snake.tl con TLangIDE.exe"
+→ Errore: No module named 'pygame'
+```
+
+**Soluzione**: Usa `snake.bat` invece!
+
+---
+
 ## 📞 SUPPORTO
 
 Se hai problemi:
