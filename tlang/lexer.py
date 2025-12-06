@@ -20,6 +20,7 @@ class TokenType(Enum):
     DEF = auto()
     RETURN = auto()
     IMPORT = auto()
+    CLASS = auto()
     TRUE = auto()
     FALSE = auto()
     AND = auto()
@@ -293,6 +294,7 @@ class Lexer:
                 ']': TokenType.RBRACKET,
                 ',': TokenType.COMMA,
                 '.': TokenType.DOT,
+                '!': TokenType.NOT,
             }
             
             if char in single_char_tokens:
