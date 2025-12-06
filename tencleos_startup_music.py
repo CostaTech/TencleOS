@@ -8,19 +8,16 @@ Fallback con pygame se winsound non funziona
 import time
 import sys
 
-# Prova winsound (Windows), altrimenti usa pygame
+# Usa pygame per audio udibile dalle casse (non PC speaker)
+AUDIO_METHOD = 'pygame'
 try:
-    import winsound
-    AUDIO_METHOD = 'winsound'
+    import pygame
+    pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
+    print("🔊 Audio: pygame (suoni sintetici udibili)")
 except ImportError:
-    AUDIO_METHOD = 'pygame'
-    try:
-        import pygame
-        pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
-    except ImportError:
-        AUDIO_METHOD = 'none'
-        print("ATTENZIONE: Nessun sistema audio disponibile!")
-        print("Installa pygame: pip install pygame")
+    AUDIO_METHOD = 'none'
+    print("ATTENZIONE: Nessun sistema audio disponibile!")
+    print("Installa pygame: pip install pygame")
 
 class TencleOSStartupMusic:
     """Classe per riprodurre la melodia di avvio TencleOS"""
@@ -94,15 +91,9 @@ class TencleOSStartupMusic:
     
     @classmethod
     def _beep(cls, freq, duration):
-        """Riproduce un beep usando il metodo disponibile"""
-        if AUDIO_METHOD == 'winsound':
-            try:
-                winsound.Beep(freq, duration)
-            except RuntimeError:
-                # PC speaker disabilitato, prova pygame
-                print("PC Speaker disabilitato, usando pygame...")
-                cls._beep_pygame(freq, duration)
-        elif AUDIO_METHOD == 'pygame':
+        """Riproduce un beep usando pygame per audio udibile"""
+        # Usa sempre pygame per suoni dalle casse invece di PC speaker
+        if AUDIO_METHOD == 'pygame':
             cls._beep_pygame(freq, duration)
         else:
             print(f"♪ {freq}Hz per {duration}ms")  # Visualizza invece di suonare
