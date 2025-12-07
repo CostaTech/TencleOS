@@ -5,7 +5,7 @@ use datetime
 
 # Note: TLang does not support file I/O yet
 # Username and password are hardcoded
-l_n = "Costantino"
+l_n = "name"
 l_p = "123456"
 
 int << func >> ("")
@@ -29,11 +29,10 @@ int << func >> ("[5] Open Tencle-game(flappybird)")
 int << func >> ("[6] Open Tencle-game(slamdunk)")
 int << func >> ("[7] Open Tencle-game(Minecraft)")
 int << func >> ("[8] Open Tencle-game(Snake)")
-int << func >> ("[9] Open Tencle-Social(Terext)")
-int << func >> ("[10] Open Tencle-calculator")
-int << func >> ("[11] Open Tencle-Studio code editor")
-int << func >> ("[12] Open Tencle-Store")
-int << func >> ("[13] Quit Tencle-Os Safely")
+int << func >> ("[9] Open Tencle-calculator")
+int << func >> ("[10] Open Tencle-Studio code editor")
+int << func >> ("[11] Open Tencle-Store")
+int << func >> ("[12] Quit Tencle-Os Safely")
 
 select_input = input("[?]: ")
 
@@ -71,9 +70,6 @@ select_input = input("[?]: ")
     int << func >> ("Opening Tencle Studio...")
     os.startfile("TLangIDE.exe")
 } elif select_input == 12 {
-    int << func >> ("Opening Tencle Store...")
-    os.startfile("index.html")
-} elif select_input == 13 {
     int << func >> ("Closing TencleOS...")
     int << func >> ("Thank you for using TencleOS!")
     quit()
