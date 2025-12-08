@@ -51,10 +51,9 @@ int << func >> ("[4] Open Tencle-Time")
 int << func >> ("[5] Open Tencle-game(flappybird)")
 int << func >> ("[6] Open Tencle-game(slamdunk)")
 int << func >> ("[7] Open Tencle-game(Minecraft)")
-int << func >> ("[8] Open Tencle-game(Snake)")
-int << func >> ("[9] Open Tencle-calculator")
-int << func >> ("[10] Open Tencle-Studio code editor")
-int << func >> ("[11] Quit Tencle-Os Safely")
+int << func >> ("[8] Open Tencle-calculator")
+int << func >> ("[9] Open Tencle-Studio code editor")
+int << func >> ("[10] Quit Tencle-Os Safely")
 
 select_input = input("[?]: ")
 
@@ -79,9 +78,6 @@ select_input = input("[?]: ")
 } elif select_input == 7 {
     int << func >> ("Opening Minecraft...")
     os.startfile("minecraft.py")
-} elif select_input == 8 {
-    int << func >> ("Opening Snake Game...")
-    os.startfile("snake.bat")
 } elif select_input == 9 {
     int << func >> ("Opening Calculator...")
     os.startfile("calculator.bat")
