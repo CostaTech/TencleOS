@@ -19,7 +19,7 @@ class AboutDialog(QDialog):
 
         layout = QVBoxLayout()
 
-        title = QLabel("Rudolf-Browser")
+        title = QLabel("Tencle-Browser")
         font = title.font()
         font.setPointSize(20)
         title.setFont(font)
@@ -194,5 +194,6 @@ app.setOrganizationName("Tencle")
 app.setOrganizationDomain("google.com")
 
 window = MainWindow()
+
 
 app.exec_()
