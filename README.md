@@ -1,4 +1,4 @@
-# TencleOS v2.0
+# TencleOS v2.1
 
 <div align="center">
 
@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/CostaTech/TencleOS)
 [![Python](https://img.shields.io/badge/Language-Python-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/Version-2.0-green.svg)](https://github.com/CostaTech/TencleOS)
+[![Version](https://img.shields.io/badge/Version-2.1-green.svg)](https://github.com/CostaTech/TencleOS)
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
 
@@ -17,37 +17,46 @@
 
 ---
 
-## 🎉 What's New in v2.0
+## 🎉 What's New in v2.1
 
 ### 🚀 Major Updates
 
-**1. DOS-Style Terminal Shell**
-- Replaced numbered menu with professional `T:\TencleOS>` prompt
-- 30+ commands including: help, ver, time, sysinfo, apps, dir, ls, pwd, tree, color, credits
-- Real-time command execution in loop (no restart needed)
-- Clean ASCII art logo (encoding-safe)
+**1. Directory Navigation System**
+- Added `cd` command to navigate between Apps, Games, and System directories
+- Added `run` command to execute applications from current directory
+- Dynamic prompt showing current location: `T:\TencleOS\Apps>`, `T:\TencleOS\Games>`, etc.
+- Marker file system (.current_Apps, .current_Games) for directory tracking
+- Built-in `launch()` function for seamless app launching
 
-**2. TLangIDE Matrix Theme**
-- New "Matrix" theme with black background and green phosphorescent text
-- 4 themes total: Dark, Light, Monokai, Matrix
-- Compiled to standalone .exe with updated theme
+**2. Enhanced Shell Architecture**
+- Shell logic moved to `System/os_new.tl` (308 lines)
+- Main loop in `os.bat` for better stability
+- Real-time command parsing with TLang interpreter
+- Support for directory-specific commands
 
-**3. Organized File Structure**
+**3. BASIC Theme for IDE**
+- New "BASIC" theme with QBasic-style blue background and yellow text
+- 5 themes total: Dark, Light, Monokai, Matrix, BASIC
+- Retro computing aesthetic
+
+**4. Organized File Structure**
 ```
 TencleOS/
-├── os.bat (launcher)
-├── Apps/          (TLangIDE, Calculator, Browser, Notepad, etc.)
-├── Games/         (Snake, Minecraft, Slam Dunk, Flappy Bird)
-└── System/        (tlang/, os.tl, startup music)
+├── os.bat              (Main shell launcher)
+├── Apps/               (Applications)
+├── Games/              (Games)
+├── System/
+│   ├── os_new.tl       (Shell command processor)
+│   └── tlang/
+│       └── tlang.exe   (Compiled interpreter without --onefile)
+└── user/               (User data)
 ```
 
-**4. Parser Improvements**
-- Fixed `<< ! >func>` marker handling in if/while statements
-- Added EOF safety checks to prevent infinite loops
-- Support for nested control structures
-
-**5. Compiled TLang Interpreter (tlang.exe)**
-- TLang interpreter compiled into standalone executable
+**5. Source Code Protection**
+- Python source files removed from distribution
+- Only compiled tlang.exe included
+- Full interpreter with all DLLs in dist/tlang/ folder
+- Fixes input() freeze bug (no --onefile flag)
 - Used for non-pygame applications (os.tl, calculator.tl, time.tl)
 - Protected source code - core interpreter is no longer modifiable
 - Faster startup time for shell and basic apps
@@ -220,7 +229,16 @@ TencleOS includes **12 integrated applications** organized in a clean folder str
 - `os.tl` - Shell system with 30+ commands
 - `startup_music.py` - TempleOS-style boot sounds
 
-### 🖥️ Shell Commands (v2.0)
+### 🖥️ Shell Commands (v2.1)
+
+**Navigation Commands (NEW in v2.1):**
+```bash
+cd <dir>    # Change directory (Apps, Games, System)
+cd ..       # Go back to TencleOS root
+run <app>   # Run application from current directory
+            # Example: cd Apps → run studio
+pwd         # Show current directory path
+```
 
 **System Commands:**
 ```bash
@@ -236,11 +254,12 @@ exit/quit   # Exit shell
 **File Commands:**
 ```bash
 dir/ls      # List files/folders
-pwd         # Current directory
 tree        # Directory structure
 ```
 
-**Direct Launch Commands (Apps):**
+**Direct Launch Commands (from root):**
+
+*Applications:*
 ```bash
 studio      # Open TLang IDE
 calc        # Calculator
@@ -248,7 +267,7 @@ browser     # Web browser
 notepad     # Text editor
 ```
 
-**Direct Launch Commands (Games):**
+*Games:*
 ```bash
 snake       # Snake game
 flappybird  # Flappy Bird game
