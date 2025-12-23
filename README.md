@@ -1,4 +1,4 @@
-# TencleOS
+# TencleOS v2.0
 
 <div align="center">
 
@@ -9,11 +9,54 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TLang](https://img.shields.io/badge/Language-TLang-orange.svg)](https://github.com/CostaTech/TencleOS)
 [![Python](https://img.shields.io/badge/Language-Python-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/Version-1.0-green.svg)](https://github.com/CostaTech/TencleOS)
+[![Version](https://img.shields.io/badge/Version-2.0-green.svg)](https://github.com/CostaTech/TencleOS)
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
 
 </div>
+
+---
+
+## 🎉 What's New in v2.0
+
+### 🚀 Major Updates
+
+**1. DOS-Style Terminal Shell**
+- Replaced numbered menu with professional `T:\TencleOS>` prompt
+- 30+ commands including: help, ver, time, sysinfo, apps, dir, ls, pwd, tree, color, credits
+- Real-time command execution in loop (no restart needed)
+- Clean ASCII art logo (encoding-safe)
+
+**2. TLangIDE Matrix Theme**
+- New "Matrix" theme with black background and green phosphorescent text
+- 4 themes total: Dark, Light, Monokai, Matrix
+- Compiled to standalone .exe with updated theme
+
+**3. Organized File Structure**
+```
+TencleOS/
+├── os.bat (launcher)
+├── Apps/          (TLangIDE, Calculator, Browser, Notepad, etc.)
+├── Games/         (Snake, Minecraft, Slam Dunk, Flappy Bird)
+└── System/        (tlang/, os.tl, startup music)
+```
+
+**4. Parser Improvements**
+- Fixed `<< ! >func>` marker handling in if/while statements
+- Added EOF safety checks to prevent infinite loops
+- Support for nested control structures
+
+**5. Compiled TLang Interpreter (tlang.exe)**
+- TLang interpreter compiled into standalone executable
+- Used for non-pygame applications (os.tl, calculator.tl, time.tl)
+- Protected source code - core interpreter is no longer modifiable
+- Faster startup time for shell and basic apps
+- Python 3.11 still required for pygame-based games (snake.tl, flappybird.tl)
+
+**6. Python 3.11 Support**
+- Python 3.11 for Pygame-based games (Flappy Bird, Snake)
+- tlang.exe handles all non-pygame TLang programs
+- Pygame games use Python due to native DLL dependencies
 
 ---
 
@@ -42,11 +85,10 @@ TencleOS isn't trying to replace Windows or Linux. It's a **proof of concept** t
    - 4 fully functional games (Snake, Flappy Bird, Minecraft clone, Slam Dunk)
    - 3 productivity tools (Text editor, File explorer, Calculator)
    - Web browser integration
-   - Social network platform (Terext)
 
-4. **🚀 Zero Installation**
-   - Single 8.99 MB executable (TLangIDE.exe)
-   - No Python installation required
+4. **🚀 Minimal Dependencies**
+   - Compiled tlang.exe (9 MB) for shell and basic apps - no Python needed
+   - Python 3.11 only required for pygame games
    - Portable - run from USB stick
    - Works on any Windows 10/11 machine
 
@@ -70,7 +112,7 @@ TencleOS uses a **dual-language architecture** combining the strengths of both l
 | **Web Browser** | Python | Complex GUI - Python's strength |
 | **File Explorer** | Python | File I/O not yet in TLang |
 | **Text Editor** | Python | Advanced text handling |
-| **Flappy Bird** | Python | Physics engine complexity |
+| **Flappy Bird** | TLang | Pygame-based game with TLang |
 | **Minecraft Clone** | Python | 3D graphics with Ursina |
 | **Other Games** | Python | Mature libraries available |
 
@@ -121,12 +163,14 @@ When TLang was created with its unique syntax, we asked: *"Can TLang build real 
 The answer: **Convert TencleOS to TLang.**
 
 **The Conversion Journey:**
-- ✅ **os.py → os.tl** - Login system converted (from username/password to PIN due to TLang limitations)
-- ✅ **main-os.py → main-os.tl** - Main menu fully converted
+- ✅ **os.py → os.tl** - Login system + main menu fully functional (merged for security)
 - ✅ **snake.py → snake.tl** - Full game with Pygame graphics
+- ✅ **flappybird.py → flappybird.tl** - Full game with Pygame physics engine
 - ✅ **calculator.py → calculator.tl** - Complete calculator logic
 - ✅ **time.py → time.tl** - Real-time clock display
-- 🔄 **Other apps** - Remaining 8 apps kept in Python (Flappy Bird, Minecraft, etc.)
+- 🔄 **Other apps** - Remaining 7 apps kept in Python (Minecraft, Slam Dunk, etc.)
+
+> **Security Note:** The main menu system was merged into `os.tl` to prevent users from bypassing the authentication by running the menu directly.
 
 **Challenges Overcome:**
 1. **String Comparison Issue** - TLang's `input()` couldn't reliably compare strings, so we switched from username/password to numeric PIN
@@ -147,29 +191,78 @@ With file I/O support (planned for TLang v2.0), we could convert ALL Python apps
 
 ---
 
-## ✨ Features
+### ✨ Features
 
 ### 🎯 TencleOS Applications
 
-TencleOS includes **13 integrated applications**:
+TencleOS includes **12 integrated applications** organized in a clean folder structure:
 
+**📁 Apps Folder:**
 | App | Description | Language | Features |
 |-----|-------------|----------|----------|
-| 🌐 **Tencle-Browser** | Web browser | Python | Google search integration |
-| 📝 **Tencle-Pad** | Text editor | Python | File editing, syntax highlighting |
-| 📁 **Tencle-Explorer** | File manager | Python | Browse directories, open files |
-| ⏰ **Tencle-Time** | Clock/Timer | **TLang** | Real-time clock display |
-| 🐍 **Snake Game** | Classic snake | **TLang** | Collision detection, scoring, game over |
-| 🧮 **Tencle-Calculator** | Calculator | **TLang** | All math operations |
-| 🐦 **Flappy Bird** | Flappy Bird clone | Python | Full game with physics |
-| ⛏️ **Minecraft** | Minecraft clone | Python | 3D world with Ursina engine |
-| 🏀 **Slam Dunk** | Basketball game | Python | Sports game simulation |
-| 💻 **Tencle-Studio** | Code editor | Python | Development environment |
-| 🛒 **Tencle-Store** | App store | Python | Browse and install apps |
-| 💬 **Tencle-Social** | Social network | Python | Terext social platform |
-| 🔐 **Login System** | Authentication | **TLang** | PIN-based login (1234) |
+| 💻 **TLangIDE** | Code editor with Matrix theme | Python | 4 themes, syntax highlighting |
+| 🧮 **Calculator** | Math operations | **TLang** | All operations (+, -, *, /, %) |
+| 🌐 **Browser** | Web browser | Python | Google search integration |
+| 📝 **Notepad** | Text editor | Python | File editing |
+| 📁 **Explorer** | File manager | Python | Browse directories |
+| ⏰ **Time** | Clock/Timer | **TLang** | Real-time display |
 
-**4 apps converted to TLang** (os.tl, main-os.tl, snake.tl, calculator.tl, time.tl) - proving TLang can handle real applications!
+**🎮 Games Folder:**
+| Game | Description | Language | Features |
+|------|-------------|----------|----------|
+| 🐍 **Snake** | Classic snake game | **TLang** | Collision detection, scoring |
+| 🐦 **Flappy Bird** | Arcade game | **TLang** | Physics engine |
+| ⛏️ **Minecraft** | Voxel building | Python | 3D world with Ursina |
+| 🏀 **Slam Dunk** | Basketball | Python | Sports simulation |
+
+**⚙️ System Folder:**
+- `tlang/` - TLang interpreter and parser
+- `os.tl` - Shell system with 30+ commands
+- `startup_music.py` - TempleOS-style boot sounds
+
+### 🖥️ Shell Commands (v2.0)
+
+**System Commands:**
+```bash
+help        # Show all commands
+ver         # TencleOS version
+time        # Date and time
+sysinfo     # System information
+about       # About TencleOS
+cls/clear   # Clear screen
+exit/quit   # Exit shell
+```
+
+**File Commands:**
+```bash
+dir/ls      # List files/folders
+pwd         # Current directory
+tree        # Directory structure
+```
+
+**Direct Launch Commands (Apps):**
+```bash
+studio      # Open TLang IDE
+calc        # Calculator
+browser     # Web browser
+notepad     # Text editor
+```
+
+**Direct Launch Commands (Games):**
+```bash
+snake       # Snake game
+flappybird  # Flappy Bird game
+minecraft   # Minecraft 2D clone
+slamdunk    # Slam Dunk basketball
+```
+
+**Utilities:**
+```bash
+apps        # List all applications
+echo <text> # Print text
+color       # Color information
+credits     # Show credits
+```
 
 ### 🚀 TLang Features
 
@@ -177,7 +270,8 @@ TencleOS includes **13 integrated applications**:
 - ✅ **Python Integration** - Import any Python library with `use`
 - ✅ **Pygame Support** - Full game development capability
 - ✅ **Professional IDE** - Syntax highlighting & debug mode
-- ✅ **Standalone EXE** - 16MB executable with no dependencies
+- ✅ **Compiled Interpreter** - tlang.exe (9MB) - no Python needed for .tl files
+- ✅ **Protected Source Code** - Interpreter compiled, not modifiable
 
 ---
 
@@ -186,51 +280,52 @@ TencleOS includes **13 integrated applications**:
 ### Prerequisites
 
 - **Windows 10/11** (64-bit)
-- No Python installation required! (Everything is included)
+- **Python 3.11** (ONLY for Pygame games like Snake, Flappy Bird, Minecraft)
+  - Download Python 3.11: https://www.python.org/downloads/release/python-3119/
+  - **Note:** TLang files (.tl) no longer require Python - they use tlang.exe
 
-### Method 1: Standalone Executable (Recommended)
+### Quick Start
 
-1. **Download TLangIDE.exe**
+1. **Download TencleOS**
    ```bash
-   # Download from releases page
-   https://github.com/yourusername/tencleos-tlang/releases
+   git clone https://github.com/CostaTech/TencleOS.git
+   cd TencleOS
    ```
 
-2. **Download TencleOS Files**
+2. **Install Python Dependencies**
    ```bash
-   git clone https://github.com/yourusername/tencleos-tlang.git
-   cd tencleos-tlang
+   # Required for Pygame-based games (Snake, Flappy Bird)
+   py -3.11 -m pip install pygame
+   ```
+   
+   **Note:** 
+   - Shell (os.tl), Calculator (calculator.tl), Time (time.tl) use tlang.exe - no Python needed
+   - Games (snake.tl, flappybird.tl) use Python 3.11 due to pygame's native DLL dependencies
+
+3. **Launch TencleOS Shell**
+   ```bash
+   # Double-click os.bat or run:
+   os.bat
    ```
 
-3. **Associate .tl Files (Optional)**
-   - Right-click `associate_tl.bat`
-   - Select "Run as Administrator"
-   - Now .tl files have custom icon and open with TLangIDE
-
-4. **Run TencleOS**
-   - Double-click `os.bat` OR
-   - Open `TLangIDE.exe` → File → Open → `main-os.tl`
-   - Press **F5** to run
-   - Enter PIN: **1234**
-
-### Method 2: Python Source
-
-1. **Clone Repository**
+4. **Try Commands**
    ```bash
-   git clone https://github.com/yourusername/tencleos-tlang.git
-   cd tencleos-tlang
+   T:\TencleOS> help           # Show all commands
+   T:\TencleOS> calc           # Launch Calculator
+   T:\TencleOS> snake          # Launch Snake game
+   T:\TencleOS> flappybird     # Launch Flappy Bird
+   T:\TencleOS> studio         # Open TLang IDE
+   T:\TencleOS> exit           # Exit shell
    ```
 
-2. **Install TLang** (if using source)
-   ```bash
-   cd tlang
-   pip install pygame pillow
-   ```
+**Note:** All apps launch directly from shell - no need for .bat files!
 
-3. **Run TencleOS**
-   ```bash
-   python tlang.py main-os.tlang
-   ```
+### Optional: File Association
+
+Run `associate_tl_files.bat` as Administrator to:
+- Associate .tl files with TLangIDE.exe
+- Add custom icon to .tl files
+- Enable double-click to open in IDE
 
 ---
 
@@ -266,11 +361,10 @@ main-os.bat      # Direttamente al menu
 [6] Open Tencle-game(slamdunk)
 [7] Open Tencle-game(Minecraft)
 [8] Open Tencle-game(Snake)
-[9] Open Tencle-Social(Terext)
-[10] Open Tencle-calculator
-[11] Open Tencle-Studio code editor
-[12] Open Tencle-Store
-[13] Quit Tencle-Os Safely
+[9] Open Tencle-calculator
+[10] Open Tencle-Studio code editor
+[11] Open Tencle-Store
+[12] Quit Tencle-Os Safely
 
 [?]:
 ```
@@ -355,10 +449,10 @@ Doppio click su: TLangIDE.exe
 2. Click su "Open" (o premi Ctrl+O)
 3. Naviga alla cartella TencleOS
 4. Seleziona un file .tl:
+   - os.tl (login + menu)
    - snake.tl
    - calculator.tl
    - time.tl
-   - main-os.tl
 5. Click "Open"
 ```
 
@@ -411,14 +505,14 @@ TencleOS è un sistema a 3 livelli:
 ┌─────────────────────────────────────────────────────┐
 │  LIVELLO 1: Login System (os.tl)                    │
 │  • Chiede PIN (1234)                                 │
-│  • Se corretto → lancia main-os.bat                  │
+│  • Se corretto → passa al main menu                  │
 └─────────────────────────────────────────────────────┘
                         ↓
 ┌─────────────────────────────────────────────────────┐
-│  LIVELLO 2: Main Menu (main-os.tl)                  │
+│  LIVELLO 2: Main Menu (integrated in os.tl)         │
 │  • Mostra banner ASCII                               │
-│  • Lista 13 opzioni                                  │
-│  • Riceve input utente (1-13)                        │
+│  • Lista 12 opzioni                                  │
+│  • Riceve input utente (1-12)                        │
 │  • Lancia app corrispondente                         │
 └─────────────────────────────────────────────────────┘
                         ↓
@@ -441,17 +535,17 @@ os.bat
 # Output:
 Enter PIN: 1234
 Access Granted!
-[Il sistema lancia automaticamente main-os.bat]
+[Il sistema mostra automaticamente il menu principale]
 ```
 
-**Metodo 2: Direttamente al Menu Principale**
+**Metodo 2: Esegui da TLangIDE**
 ```bash
-# Doppio click su:
-main-os.bat
-
-# Oppure in TLangIDE:
-File → Open → main-os.tl
+# In TLangIDE:
+File → Open → os.tl
 Press F5
+
+# Inserisci PIN: 1234
+# Il menu apparirà automaticamente
 ```
 
 **Metodo 3: App Singola**
@@ -474,15 +568,16 @@ pin = input("Enter PIN: ")
 
 << ! >func> if pin == 1234 {
     int << func >> ("Access Granted!")
-    os.startfile("main-os.bat")  # Lancia menu principale
+    # Menu integrato nel file, continua esecuzione
 } >> func << else {
     int << func >> ("Access Denied!")
+    quit()
 }
 ```
 
-**Passo 2 - Main Menu (main-os.tl):**
+**Passo 2 - Main Menu (integrated in os.tl):**
 ```tlang
-# Mostra banner
+# Dopo login, mostra banner
 int << func >> ("████████╗███████╗...")
 int << func >> ("[1] Open Google In Tencle-Browser")
 int << func >> ("[2] Open Tencle-Pad")
@@ -581,15 +676,14 @@ Today is: 120125
 [2] Open Tencle-Pad                   → notepad.pyw (Python)
 [3] Open Tencle-Explorer               → explorer.pyw (Python)
 [4] Open Tencle-Time                   → time.bat → time.tl (TLang)
-[5] Open Tencle-game(flappybird)       → flappybird.bat → flappybird.py
+[5] Open Tencle-game(flappybird)       → flappybird.bat → flappybird.tl (TLang)
 [6] Open Tencle-game(slamdunk)         → slamdunk.bat → slam dunk.py
 [7] Open Tencle-game(Minecraft)        → minecraft.bat → minecraft.py
 [8] Open Tencle-game(Snake)            → snake.bat → snake.tl (TLang)
-[9] Open Tencle-Social(Terext)         → terextsocial(incomplete).py
-[10] Open Tencle-calculator            → calculator.bat → calculator.tl (TLang)
-[11] Open Tencle-Studio code editor    → (Not implemented)
-[12] Open Tencle-Store                 → (Not implemented)
-[13] Quit Tencle-Os Safely             → Exits system
+[9] Open Tencle-calculator             → calculator.bat → calculator.tl (TLang)
+[10] Open Tencle-Studio code editor    → TLangIDE.exe
+[11] Open Tencle-Store                 → (Not implemented)
+[12] Quit Tencle-Os Safely             → Exits system
 ```
 
 ### 🎲 Complete Guide: How to Open & Use Each App
@@ -707,18 +801,9 @@ Output esempio:
   [Grafica Pygame con serpente verde]
 ```
 
-#### 💬 **9. Tencle-Social (Terext)**
+#### 🧮 **9. Tencle-Calculator** [TLang] ⭐
 ```
 Dal Menu: Digita 9 e premi Enter
-Diretto: Doppio click su terextsocial(incomplete).py
-
-Cosa fa: Social network (incompleto)
-Stato: In sviluppo
-```
-
-#### 🧮 **10. Tencle-Calculator** [TLang] ⭐
-```
-Dal Menu: Digita 10 e premi Enter
 Diretto: Doppio click su calculator.bat
 TLangIDE: Apri calculator.tl → F5
 
@@ -765,16 +850,15 @@ Output: "Goodbye! Exiting TencleOS..."
 | 1 | Browser | `browser.pyw` | Python | ⭐ Easy | 1 min |
 | 2 | Notepad | `notepad.pyw` | Python | ⭐ Easy | 2 min |
 | 3 | Explorer | `explorer.pyw` | Python | ⭐ Easy | 1 min |
-| 4 | Time | `time.bat` | **TLang** | ⭐ Easy | Instant |
-| 5 | Flappy Bird | `flappybird.bat` | Python | ⭐⭐⭐ Hard | 5-10 min |
+| 4 | Time | `time.bat` | **TLang** (exe) | ⭐ Easy | Instant |
+| 5 | Flappy Bird | `flappybird.bat` | **TLang** (py) | ⭐⭐⭐ Hard | 5-10 min |
 | 6 | Slam Dunk | `slamdunk.bat` | Python | ⭐⭐ Medium | 3-5 min |
 | 7 | Minecraft | `minecraft.bat` | Python | ⭐⭐ Medium | 10+ min |
-| 8 | Snake | `snake.bat` | **TLang** | ⭐⭐ Medium | 5-10 min |
-| 9 | Social | - | Python | - | N/A |
-| 10 | Calculator | `calculator.bat` | **TLang** | ⭐ Easy | 30 sec |
-| 11 | Studio | - | - | - | N/A |
-| 12 | Store | - | - | - | N/A |
-| 13 | Quit | - | **TLang** | ⭐ Easy | Instant |
+| 8 | Snake | `snake.bat` | **TLang** (py) | ⭐⭐ Medium | 5-10 min |
+| 9 | Calculator | `calculator.bat` | **TLang** (exe) | ⭐ Easy | 30 sec |
+| 10 | Studio | `TLangIDE.exe` | Python | ⭐ Easy | - |
+| 11 | Store | - | - | - | N/A |
+| 12 | Quit | - | **TLang** (exe) | ⭐ Easy | Instant |
 
 ### 💡 Pro Tips
 
@@ -915,15 +999,13 @@ int << func >> ("Hello, World!")
 
 ```
 TencleOS/
-├── 🔐 os.tl               # Login system (PIN: 1234) [TLang]
-├── 🖥️ main-os.tl          # Main OS menu (START HERE) [TLang]
+├── 🔐 os.tl               # Login + Main Menu (START HERE) [TLang]
 ├── 🐍 snake.tl            # Snake game [TLang]
 ├── 🧮 calculator.tl       # Calculator app [TLang]
 ├── ⏰ time.tl             # Clock/Timer [TLang]
 │
 ├── 📦 Batch Launchers
-│   ├── os.bat            # Launch login system
-│   ├── main-os.bat       # Launch main menu
+│   ├── os.bat            # Launch full system (login + menu)
 │   ├── snake.bat         # Launch snake game
 │   ├── calculator.bat    # Launch calculator
 │   └── time.bat          # Launch timer
@@ -959,7 +1041,7 @@ TencleOS/
 
 ### 📊 Project Statistics
 - **Total Files:** 30+
-- **TLang Applications:** 5 (os.tl, main-os.tl, snake.tl, calculator.tl, time.tl)
+- **TLang Applications:** 4 (os.tl with menu, snake.tl, calculator.tl, time.tl)
 - **Python Applications:** 8
 - **Total Lines of Code:** ~2,000
 - **TLangIDE Size:** 8.99 MB
@@ -997,13 +1079,13 @@ This will:
 
 **Architecture:**
 ```
-os.bat → os.tl (Login)
+os.bat → os.tl (Login + Main Menu)
             ↓
         PIN Check (1234)
             ↓
-main-os.bat → main-os.tl (Main Menu)
+        Main Menu Display
             ↓
-        User Selection (1-13)
+        User Selection (1-12)
             ↓
     Launch App (.bat launcher)
             ↓
@@ -1213,7 +1295,7 @@ A: Default PIN is **1234**. You can change it in `os.tl`.
 A: Yes! The lexer, parser, and interpreter are all open source. Study the code to learn language design.
 
 **Q: How do I run TencleOS?**  
-A: Run `os.bat` for full experience with login, or open `main-os.tl` in TLangIDE and press F5.
+A: Run `os.bat` for full experience with login + menu, or open `os.tl` in TLangIDE and press F5.
 
 **Q: Why .tl instead of .tlang?**  
 A: Shorter extension for convenience. Old `.tlang` files still work.
@@ -1225,8 +1307,8 @@ A: Absolutely! Check the documentation, examples, and use TLangIDE.exe.
 A: It's an OS interface/menu system with applications, not a kernel-level OS like Windows or Linux.
 
 **Q: Which apps are in TLang vs Python?**  
-A: **TLang:** os.tl, main-os.tl, snake.tl, calculator.tl, time.tl (5 apps)  
-**Python:** Browser, Notepad, Explorer, Flappy Bird, Minecraft, Slam Dunk, Studio, Store, Social (8 apps)
+A: **TLang:** os.tl (with login + menu), snake.tl, calculator.tl, time.tl (4 apps)  
+**Python:** Browser, Notepad, Explorer, Flappy Bird, Minecraft, Slam Dunk, Studio, Store (8 apps)
 
 **Q: Can I contribute?**  
 A: Yes! See the [Contributing](#contributing) section. We especially need help with file I/O support.

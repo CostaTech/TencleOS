@@ -105,9 +105,9 @@
                 <pre><code><span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Ciao mondo!"</span></code></pre>
 
                 <h4>Variabili</h4>
-                <pre><code><span class="variable">nome</span> = <span class="string">"TLang"</span>
-<span class="variable">versione</span> = <span class="number">1.0</span>
-<span class="variable">attivo</span> = <span class="keyword">on</span>  <span class="comment">// on/off invece di True/False</span></code></pre>
+                <pre><code><span class="keyword">var</span> <span class="variable">nome</span> = <span class="string">"TLang"</span>
+<span class="keyword">var</span> <span class="variable">versione</span> = <span class="number">1.0</span>
+<span class="keyword">var</span> <span class="variable">attivo</span> = <span class="keyword">on</span>  <span class="comment">// on/off invece di True/False</span></code></pre>
 
                 <h4>Operatori</h4>
                 <pre><code><span class="comment">// Aritmetici</span>
@@ -131,11 +131,11 @@
                 <h4>Condizioni If/Elif/Else</h4>
                 <pre><code><span class="variable">eta</span> = <span class="number">18</span>
 
-<span class="keyword">&lt;&lt; ! &gt;func&gt;</span> <span class="variable">eta</span> &gt;= <span class="number">18</span> {
+<span class="keyword">&lt;&lt; ! &gt;func&gt; if</span> <span class="variable">eta</span> &gt;= <span class="number">18</span> {
     <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Maggiorenne"</span>
-} <span class="keyword">&lt;&lt; funcc &gt;</span> <span class="variable">eta</span> &gt;= <span class="number">13</span> {
+} <span class="keyword">elif</span> <span class="variable">eta</span> &gt;= <span class="number">13</span> {
     <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Adolescente"</span>
-} <span class="keyword">&lt;&lt; fun &gt;</span> {
+} <span class="keyword">&gt;&gt; func &lt;&lt; else</span> {
     <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Bambino"</span>
 }</code></pre>
 
@@ -154,8 +154,8 @@
 
                 <h4>Break e Continue</h4>
                 <pre><code><span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>] {
-    <span class="keyword">&lt;&lt; ! &gt;func&gt;</span> <span class="variable">i</span> == <span class="number">3</span> {
-        <span class="keyword">stop</span>  <span class="comment">// Esce dal loop</span>
+    <span class="keyword">&lt;&lt; ! &gt;func&gt; if</span> <span class="variable">i</span> == <span class="number">3</span> {
+        <span class="keyword">COMANDO_BREAK</span>  <span class="comment">// Esce dal loop</span>
     }
     <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">i</span>
 }</code></pre>
@@ -250,6 +250,7 @@ COMANDO_PRINT = <span class="string">"stampa"</span>  <span class="comment"># In
                     <li><strong>Ctrl+O</strong> - Apri file</li>
                     <li><strong>Ctrl+S</strong> - Salva file</li>
                     <li><strong>Ctrl+N</strong> - Nuovo file</li>
+                    <li><strong>5 Temi</strong> - Dark, Light, Monokai, Matrix, BASIC</li>
                 </ul>
 
                 <h4>Tab Output</h4>
@@ -342,11 +343,12 @@ pygame.quit()</code></pre>
             <h2>Download</h2>
             <div class="download-card">
                 <h3>TLangIDE v1.0</h3>
-                <p>IDE completo con Python e Pygame inclusi</p>
+                <p>IDE completo con 5 temi (Dark, Light, Monokai, Matrix, BASIC)</p>
                 <ul>
                     <li>✅ Nessuna dipendenza esterna</li>
                     <li>✅ Syntax highlighting</li>
                     <li>✅ Debug mode integrato</li>
+                    <li>✅ 5 temi personalizzabili</li>
                     <li>✅ 16.4 MB standalone</li>
                 </ul>
                 <a href="downloads/TLangIDE.exe" class="btn btn-download" download>
