@@ -55,9 +55,9 @@ TencleOS/
 **5. Source Code Protection**
 - Python source files removed from distribution
 - Only compiled tlang.exe included
-- Full interpreter with all DLLs in dist/tlang/ folder
+- Full interpreter with all DLLs in System/tlang/ folder
 - Fixes input() freeze bug (no --onefile flag)
-- Used for non-pygame applications (os.tl, calculator.tl, time.tl)
+- Used for non-pygame applications (os_new.tl, calculator.tl, time.tl)
 - Protected source code - core interpreter is no longer modifiable
 - Faster startup time for shell and basic apps
 - Python 3.11 still required for pygame-based games (snake.tl, flappybird.tl)
@@ -301,7 +301,8 @@ credits     # Show credits
 - **Windows 10/11** (64-bit)
 - **Python 3.11** (ONLY for Pygame games like Snake, Flappy Bird, Minecraft)
   - Download Python 3.11: https://www.python.org/downloads/release/python-3119/
-  - **Note:** TLang files (.tl) no longer require Python - they use tlang.exe
+  - **Note:** TLang files (.tl) run with `System\tlang\tlang.exe` - no Python needed for shell, calculator, time
+  - **Pygame games** (snake.tl, flappybird.tl) still need Python 3.11 due to pygame DLL dependencies
 
 ### Quick Start
 
@@ -339,12 +340,30 @@ credits     # Show credits
 
 **Note:** All apps launch directly from shell - no need for .bat files!
 
+### 📝 Working with TLang Files (.tl)
+
+**Opening .tl files:**
+- **Method 1:** Double-click after running `associate_tl_files.bat` (see below)
+- **Method 2:** Right-click → Open with → Browse → Select `Apps\TLangIDE.exe`
+- **Method 3:** From command line: `Apps\TLangIDE.exe path\to\file.tl`
+
+**Running .tl files:**
+- **Shell scripts (os_new.tl):** `System\tlang\tlang.exe System\os_new.tl`
+- **Calculator, Time:** `System\tlang\tlang.exe Apps\calculator.tl`
+- **Games (Snake, Flappy Bird):** Require Python 3.11 + pygame
+
+**TLangIDE.exe Icon:**
+The IDE uses `System\icon.ico` for its interface. This icon is automatically applied when you:
+- Launch TLangIDE.exe
+- Associate .tl files using `associate_tl_files.bat`
+
 ### Optional: File Association
 
 Run `associate_tl_files.bat` as Administrator to:
-- Associate .tl files with TLangIDE.exe
-- Add custom icon to .tl files
-- Enable double-click to open in IDE
+- Associate .tl files with `Apps\TLangIDE.exe`
+- Add custom `System\icon.ico` to .tl files in Explorer
+- Enable double-click to open .tl files in TLang IDE
+- Automatic syntax highlighting on open
 
 ---
 
