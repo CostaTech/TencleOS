@@ -257,22 +257,25 @@ dir/ls      # List files/folders
 tree        # Directory structure
 ```
 
-**Direct Launch Commands (from root):**
+**App Launch (v2.1 Navigation):**
 
-*Applications:*
+*Using cd/run (Recommended):*
 ```bash
-studio      # Open TLang IDE
-calc        # Calculator
-browser     # Web browser
-notepad     # Text editor
+T:\TencleOS> cd Apps
+T:\TencleOS\Apps> run studio     # Launch IDE
+T:\TencleOS\Apps> run calc       # Launch Calculator
+T:\TencleOS\Apps> cd ..
+T:\TencleOS> cd Games
+T:\TencleOS\Games> run snake     # Launch Snake
+T:\TencleOS\Games> run flappybird # Launch Flappy Bird
 ```
 
-*Games:*
+*Direct Launch (from root only):*
 ```bash
-snake       # Snake game
-flappybird  # Flappy Bird game
-minecraft   # Minecraft 2D clone
-slamdunk    # Slam Dunk basketball
+T:\TencleOS> studio      # Open TLang IDE (direct)
+T:\TencleOS> calc        # Calculator (direct)
+T:\TencleOS> snake       # Snake game (direct)
+T:\TencleOS> flappybird  # Flappy Bird (direct)
 ```
 
 **Utilities:**
@@ -343,27 +346,31 @@ credits     # Show credits
 ### 📝 Working with TLang Files (.tl)
 
 **Opening .tl files:**
-- **Method 1:** Double-click after running `associate_tl_files.bat` (see below)
-- **Method 2:** Right-click → Open with → Browse → Select `Apps\TLangIDE.exe`
+- **Method 1:** Right-click → Open with → Browse → Select `Apps\TLangIDE.exe`
+- **Method 2:** From TencleOS shell: `studio` to open IDE, then File → Open
 - **Method 3:** From command line: `Apps\TLangIDE.exe path\to\file.tl`
 
 **Running .tl files:**
-- **Shell scripts (os_new.tl):** `System\tlang\tlang.exe System\os_new.tl`
-- **Calculator, Time:** `System\tlang\tlang.exe Apps\calculator.tl`
-- **Games (Snake, Flappy Bird):** Require Python 3.11 + pygame
 
-**TLangIDE.exe Icon:**
-The IDE uses `System\icon.ico` for its interface. This icon is automatically applied when you:
-- Launch TLangIDE.exe
-- Associate .tl files using `associate_tl_files.bat`
+*Method 1: Using tlang.exe (No Python needed)*
+```bash
+# Shell and basic apps
+System\tlang\tlang.exe System\os_new.tl
+System\tlang\tlang.exe Apps\calculator.tl
+System\tlang\tlang.exe Apps\time.tl
+```
 
-### Optional: File Association
+*Method 2: Python 3.11 (Pygame games only)*
+```bash
+# Games requiring pygame
+py -3.11 Games\snake.tl
+py -3.11 Games\flappybird.tl
+```
 
-Run `associate_tl_files.bat` as Administrator to:
-- Associate .tl files with `Apps\TLangIDE.exe`
-- Add custom `System\icon.ico` to .tl files in Explorer
-- Enable double-click to open .tl files in TLang IDE
-- Automatic syntax highlighting on open
+**TLangIDE.exe:**
+The IDE uses `System\icon.ico` for its interface. Launch with:
+- From shell: `studio`
+- Direct: `Apps\TLangIDE.exe`
 
 ---
 
