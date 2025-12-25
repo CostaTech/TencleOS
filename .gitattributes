@@ -1,11 +1,22 @@
-# TLang Language Definition
-*.tl linguist-language=TLang
-*.tl linguist-detectable=true
+# TLang Language Definition for GitHub Linguist
+*.tl linguist-language=Python linguist-detectable=true
+*.bat linguist-detectable=false
 
-# Override documentation languages
+# Documentation files (not counted in language statistics)
 docs/** linguist-documentation=true
 *.md linguist-documentation=true
+README.md linguist-documentation=true
+CHANGELOG.md linguist-documentation=true
 
 # Vendored/Generated files (not counted in stats)
-System/tlang/_internal/** linguist-vendored
-__pycache__/** linguist-generated
+System/tlang/** linguist-vendored=true
+System/tlang/_internal/** linguist-vendored=true
+__pycache__/** linguist-generated=true
+
+# Python files to exclude from stats (helper scripts)
+*.py linguist-vendored=true
+*.pyw linguist-vendored=true
+
+# Exclude IDE and executables from language stats
+Apps/TLangIDE.exe linguist-generated=true
+System/tlang/tlang.exe linguist-generated=true
