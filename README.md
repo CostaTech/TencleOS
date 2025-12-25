@@ -1290,7 +1290,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **TLang** - The revolutionary customizable programming language
+- **TLang** - The revolutionary programming language with unique syntax
 - **Pygame** - Game development library
 - **Python** - Base implementation language
 - **Terry A. Davis** - Inspiration from TempleOS and HolyC
