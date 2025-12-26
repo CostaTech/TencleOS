@@ -1,10 +1,14 @@
-# TLang Language Definition
-*.tl linguist-language=TLang
-*.tl linguist-detectable=true
+# TLang Language Definition - Force custom language detection
+*.tl linguist-language=TencleLang linguist-detectable=true
 
 # Override documentation languages
 docs/** linguist-documentation=true
 *.md linguist-documentation=true
+
+# Mark Python files as vendored (don't count in language stats)
+*.py linguist-vendored=true
+System/tencleos_launcher.py linguist-vendored=true
+System/tencleos_startup_music.py linguist-vendored=true
 
 # Vendored/Generated files (not counted in stats)
 System/tlang/_internal/** linguist-vendored
