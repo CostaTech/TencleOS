@@ -17,6 +17,23 @@
 
 ---
 
+## 🚀 BIG ANNOUNCEMENT - COMING SOON!
+
+**TencleLang is being completely rewritten in C!**
+
+This means TencleOS will soon become a **real bootable Operating System** distributed as an **.iso file**!
+
+### What's Coming:
+- ✅ **Bootloader in Assembly** - Full hardware control from boot
+- ✅ **Minimal Kernel** - Custom OS core
+- ✅ **Native TencleLang Interpreter in C** - No Python dependency
+- ✅ **Pure .tl Execution** - Shell and programs run directly in TencleLang
+- ✅ **Bootable ISO** - Download and boot from USB/CD
+
+**TencleOS will be a TRUE operating system!** Stay tuned for the release! 🎉
+
+---
+
 ## 🎉 What's New in v2.1
 
 ### 🚀 Major Updates
