@@ -14,9 +14,16 @@ use os
     var current_dir = "T:\\TencleOS"
 }
 
-# Build prompt
-var prompt = current_dir + "> "
-var command = input(prompt)
+# Build prompt and get command
+<< ! >func> if current_dir == "T:\\TencleOS" {
+    var command = input("T:/TencleOS> ")
+} elif current_dir == "T:\\TencleOS\\Apps" {
+    var command = input("T:/TencleOS/Apps> ")
+} elif current_dir == "T:\\TencleOS\\Games" {
+    var command = input("T:/TencleOS/Games> ")
+} >> func << else {
+    var command = input("T:/TencleOS/System> ")
+}
 
 # Parse command for arguments using simple string operations
 << ! >func> if command.startswith("cd ") {
