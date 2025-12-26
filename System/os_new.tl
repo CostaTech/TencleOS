@@ -1,11 +1,22 @@
 # TencleOS Shell v2.1 - Directory Navigation
 # Supports cd and run commands
 
-# For now, always start at root (marker files checked by batch file)
-var current_dir = "T:\\TencleOS"
+use os
 
-# Get user command with appropriate prompt
-var command = input("T:/TencleOS> ")
+# Get current directory by checking marker files
+<< ! >func> if os.path.exists(".current_Apps") {
+    var current_dir = "T:\\TencleOS\\Apps"
+} elif os.path.exists(".current_Games") {
+    var current_dir = "T:\\TencleOS\\Games"
+} elif os.path.exists(".current_System") {
+    var current_dir = "T:\\TencleOS\\System"
+} >> func << else {
+    var current_dir = "T:\\TencleOS"
+}
+
+# Build prompt
+var prompt = current_dir + "> "
+var command = input(prompt)
 
 # Parse command for arguments using simple string operations
 << ! >func> if command.startswith("cd ") {
