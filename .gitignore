@@ -141,3 +141,7 @@ build/
 dist/
 *.spec
 tlang_icon.ico
+
+# Allow .pyd files in _internal folder (needed for distribution)
+!System/tlang/_internal/*.pyd
+!System/tlang/_internal/**/*.pyd
