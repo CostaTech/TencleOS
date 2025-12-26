@@ -16,7 +16,8 @@ use os
 
 # Build prompt
 var prompt = current_dir + "> "
-var command = input(prompt)
+STAMPA_INLINE prompt
+var command = LEGGI
 
 # Parse command for arguments using simple string operations
 << ! >func> if command.startswith("cd ") {
