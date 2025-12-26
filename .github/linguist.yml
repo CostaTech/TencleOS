@@ -1,0 +1,8 @@
+TLang:
+  type: programming
+  color: "#ff6600"
+  extensions:
+    - ".tl"
+  interpreters:
+    - tlang
+  language_id: 999999999
