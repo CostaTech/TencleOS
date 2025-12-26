@@ -1,0 +1,11 @@
+# TLang Language Definition
+*.tl linguist-language=TLang
+*.tl linguist-detectable=true
+
+# Override documentation languages
+docs/** linguist-documentation=true
+*.md linguist-documentation=true
+
+# Vendored/Generated files (not counted in stats)
+System/tlang/_internal/** linguist-vendored
+__pycache__/** linguist-generated
