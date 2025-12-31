@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1f3a;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00d9ff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0066ff;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="200" cy="200" r="195" fill="url(#bgGradient)" stroke="#00d9ff" stroke-width="2"/>
+  
+  <!-- Outer Circuit Ring -->
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#00d9ff" stroke-width="1" opacity="0.3"/>
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#00d9ff" stroke-width="1" opacity="0.2"/>
+  
+  <!-- Circuit Lines (8 segments) -->
+  <line x1="200" y1="20" x2="200" y2="50" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  <line x1="341" y1="59" x2="318" y2="82" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  <line x1="380" y1="200" x2="350" y2="200" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  <line x1="341" y1="341" x2="318" y2="318" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  <line x1="200" y1="380" x2="200" y2="350" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  <line x1="59" y1="341" x2="82" y2="318" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  <line x1="20" y1="200" x2="50" y2="200" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  <line x1="59" y1="59" x2="82" y2="82" stroke="#00d9ff" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Circuit Nodes -->
+  <circle cx="200" cy="30" r="4" fill="#00d9ff"/>
+  <circle cx="330" cy="70" r="4" fill="#00d9ff"/>
+  <circle cx="370" cy="200" r="4" fill="#00d9ff"/>
+  <circle cx="330" cy="330" r="4" fill="#00d9ff"/>
+  <circle cx="200" cy="370" r="4" fill="#00d9ff"/>
+  <circle cx="70" cy="330" r="4" fill="#00d9ff"/>
+  <circle cx="30" cy="200" r="4" fill="#00d9ff"/>
+  <circle cx="70" cy="70" r="4" fill="#00d9ff"/>
+  
+  <!-- Inner Glow -->
+  <circle cx="200" cy="200" r="120" fill="url(#glowGradient)" opacity="0.3"/>
+  
+  <!-- Main "T" Letter - Cyber Style -->
+  <g id="tLetter">
+    <!-- Top horizontal bar -->
+    <path d="M 100 100 L 300 100 L 300 130 L 215 130 L 215 300 L 185 300 L 185 130 L 100 130 Z" 
+          fill="#00d9ff" stroke="#ffffff" stroke-width="2"/>
+    
+    <!-- Cyber accent lines -->
+    <line x1="100" y1="100" x2="90" y2="90" stroke="#ff0055" stroke-width="3"/>
+    <line x1="300" y1="100" x2="310" y2="90" stroke="#ff0055" stroke-width="3"/>
+    <line x1="215" y1="300" x2="225" y2="310" stroke="#ff0055" stroke-width="3"/>
+    <line x1="185" y1="300" x2="175" y2="310" stroke="#ff0055" stroke-width="3"/>
+  </g>
+  
+  <!-- Binary Code Pattern (decorative) -->
+  <text x="200" y="360" font-family="monospace" font-size="10" fill="#00d9ff" opacity="0.4" text-anchor="middle">
+    01010100 01100101 01101110 01100011
+  </text>
+  
+  <!-- Text: TencleOS -->
+  <text x="200" y="385" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#00d9ff" text-anchor="middle">
+    TencleOS
+  </text>
+  
+  <!-- Scanline effect -->
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#00d9ff" stroke-width="1" opacity="0.1" stroke-dasharray="2,2"/>
+</svg>
