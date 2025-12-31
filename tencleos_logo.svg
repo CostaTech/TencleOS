@@ -59,9 +59,14 @@
     01010100 01100101 01101110 01100011
   </text>
   
-  <!-- Text: TencleOS -->
+  <!-- Text: TencleLang -->
   <text x="200" y="385" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#00d9ff" text-anchor="middle">
-    TencleOS
+    TencleLang
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="200" y="398" font-family="Arial, sans-serif" font-size="10" fill="#00d9ff" opacity="0.7" text-anchor="middle">
+    PROGRAMMING LANGUAGE
   </text>
   
   <!-- Scanline effect -->
