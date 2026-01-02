@@ -14,21 +14,21 @@
 
 ---
 
-## 📖 About
+##  About
 
 **TencleLang** (`.tl`) is a modern programming language featuring a distinctive syntax design with special keywords and operators. Built for both beginners and experienced developers, TencleLang offers intuitive programming constructs with powerful capabilities.
 
-## ✨ Features
+##  Features
 
-- **🎯 Unique Syntax**: Special keyword syntax with `<< >>` and `< >` operators
-- **📦 Variables**: Support for integers, floats, strings, and lists
-- **🔀 Conditionals**: `if`, `elif`, `else` statements with flexible comparison
-- **🔁 Loops**: `while` loops with condition-based iteration
-- **⚡ Functions**: Function definitions with parameters and return values
-- **🎮 Pygame Integration**: Built-in support for game development
-- **🖥️ Cross-platform**: Windows executable ready to use
+- ** Unique Syntax**: Special keyword syntax with `<< >>` and `< >` operators
+- ** Variables**: Support for integers, floats, strings, and lists
+- ** Conditionals**: `if`, `elif`, `else` statements with flexible comparison
+- ** Loops**: `while` loops with condition-based iteration
+- ** Functions**: Function definitions with parameters and return values
+- ** Pygame Integration**: Built-in support for game development
+- ** Cross-platform**: Windows executable ready to use
 
-## 🚀 Installation
+## Installation
 
 ### Quick Start
 
@@ -41,7 +41,7 @@ cd System/tlang
 tlang.exe your_program.tl
 ```
 
-## 📝 Syntax Overview
+##  Syntax Overview
 
 ### Special Keywords
 
@@ -90,7 +90,7 @@ int i = 0
     i = i + 1
 ```
 
-## 📚 Examples
+##  Examples
 
 ### Calculator
 
