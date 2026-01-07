@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLang - Il Linguaggio di Programmazione Personalizzabile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/tlang_logo.png" alt="TLang Logo">
+                <span>TLang</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#docs">Documentazione</a></li>
+                <li><a href="#examples">Esempi</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>TLang</h1>
+            <p class="tagline">Il linguaggio di programmazione con sintassi 100% personalizzabile</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">Scarica TLangIDE</a>
+                <a href="#docs" class="btn btn-secondary">Documentazione</a>
+            </div>
+            <div class="code-preview">
+                <pre><code><span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Benvenuto in TLang!"</span>
+
+<span class="keyword">use</span> pygame
+
+<span class="comment">// Sintassi personalizzabile!</span>
+<span class="keyword">&lt;&lt;While&gt;&gt;! &lt;on&gt;</span> {
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Game loop attivo"</span>
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Caratteristiche Principali</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">🎨</div>
+                    <h3>Sintassi Personalizzabile</h3>
+                    <p>Modifica tutti i comandi in config.py. Vuoi "stampa" invece di "print"? Fatto!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🐍</div>
+                    <h3>Integrazione Python</h3>
+                    <p>Importa qualsiasi libreria Python: pygame, numpy, matplotlib e molto altro.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💻</div>
+                    <h3>IDE Professionale</h3>
+                    <p>Editor con syntax highlighting, debug mode, e output in tempo reale.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🚀</div>
+                    <h3>Standalone EXE</h3>
+                    <p>16 MB, nessuna dipendenza. Python e Pygame già inclusi!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎮</div>
+                    <h3>Game Development</h3>
+                    <p>Crea giochi con pygame usando la tua sintassi personalizzata.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔧</div>
+                    <h3>Facile da Usare</h3>
+                    <p>Sintassi intuitiva, errori chiari, documentazione completa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="docs" class="documentation">
+        <div class="container">
+            <h2>Documentazione</h2>
+
+            <div class="doc-section">
+                <h3>Installazione</h3>
+                <ol>
+                    <li>Scarica <strong>TLangIDE.exe</strong> dalla sezione Download</li>
+                    <li>Esegui il file - non serve installazione!</li>
+                    <li>Associa i file .tl (opzionale): esegui <code>associate_tl.bat</code> come Amministratore
+                    </li>
+                </ol>
+            </div>
+
+            <div class="doc-section">
+                <h3>Sintassi Base</h3>
+
+                <h4>Stampa a schermo</h4>
+                <pre><code><span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Ciao mondo!"</span></code></pre>
+
+                <h4>Variabili</h4>
+                <pre><code><span class="keyword">var</span> <span class="variable">nome</span> = <span class="string">"TLang"</span>
+<span class="keyword">var</span> <span class="variable">versione</span> = <span class="number">1.0</span>
+<span class="keyword">var</span> <span class="variable">attivo</span> = <span class="keyword">on</span>  <span class="comment">// on/off invece di True/False</span></code></pre>
+
+                <h4>Operatori</h4>
+                <pre><code><span class="comment">// Aritmetici</span>
+<span class="variable">x</span> = <span class="number">10</span> + <span class="number">5</span>   <span class="comment">// Addizione</span>
+<span class="variable">y</span> = <span class="number">20</span> - <span class="number">3</span>   <span class="comment">// Sottrazione</span>
+<span class="variable">z</span> = <span class="number">4</span> * <span class="number">3</span>    <span class="comment">// Moltiplicazione</span>
+<span class="variable">w</span> = <span class="number">10</span> / <span class="number">2</span>   <span class="comment">// Divisione</span>
+<span class="variable">mod</span> = <span class="number">10</span> % <span class="number">3</span>  <span class="comment">// Modulo</span>
+
+<span class="comment">// Confronto</span>
+<span class="number">5</span> == <span class="number">5</span>   <span class="comment">// Uguale</span>
+<span class="number">3</span> != <span class="number">4</span>   <span class="comment">// Diverso</span>
+<span class="number">2</span> &lt; <span class="number">5</span>    <span class="comment">// Minore</span>
+<span class="number">7</span> &gt; <span class="number">3</span>    <span class="comment">// Maggiore</span>
+
+<span class="comment">// Logici</span>
+<span class="keyword">on</span> <span class="keyword">and</span> <span class="keyword">off</span>   <span class="comment">// AND</span>
+<span class="keyword">on</span> <span class="keyword">or</span> <span class="keyword">off</span>    <span class="comment">// OR</span>
+<span class="keyword">not</span> <span class="keyword">on</span>        <span class="comment">// NOT</span></code></pre>
+
+                <h4>Condizioni If/Elif/Else</h4>
+                <pre><code><span class="variable">eta</span> = <span class="number">18</span>
+
+<span class="keyword">&lt;&lt; ! &gt;func&gt; if</span> <span class="variable">eta</span> &gt;= <span class="number">18</span> {
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Maggiorenne"</span>
+} <span class="keyword">elif</span> <span class="variable">eta</span> &gt;= <span class="number">13</span> {
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Adolescente"</span>
+} <span class="keyword">&gt;&gt; func &lt;&lt; else</span> {
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Bambino"</span>
+}</code></pre>
+
+                <h4>Loop While</h4>
+                <pre><code><span class="variable">contatore</span> = <span class="number">0</span>
+
+<span class="keyword">&lt;&lt;While&gt;&gt;! &lt;on&gt;</span> <span class="variable">contatore</span> &lt; <span class="number">5</span> {
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">contatore</span>
+    <span class="variable">contatore</span> = <span class="variable">contatore</span> + <span class="number">1</span>
+}</code></pre>
+
+                <h4>Loop For</h4>
+                <pre><code><span class="keyword">int &lt; for &gt;</span> <span class="variable">i</span> <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>] {
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">i</span>
+}</code></pre>
+
+                <h4>Break e Continue</h4>
+                <pre><code><span class="keyword">int &lt; for &gt;</span> <span class="variable">i</span> <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>] {
+    <span class="keyword">&lt;&lt; ! &gt;func&gt; if</span> <span class="variable">i</span> == <span class="number">3</span> {
+        <span class="keyword">stop</span>  <span class="comment">// Esce dal loop</span>
+    }
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">i</span>
+}</code></pre>
+
+                <h4>Liste e Indexing</h4>
+                <pre><code><span class="variable">numeri</span> = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>]
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">numeri</span>[<span class="number">0</span>]  <span class="comment">// Stampa 10</span>
+
+<span class="variable">nomi</span> = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>]
+<span class="keyword">int &lt; for &gt;</span> <span class="variable">nome</span> <span class="keyword">in</span> <span class="variable">nomi</span> {
+    <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">nome</span>
+}</code></pre>
+
+                <h4>Import e Librerie Python</h4>
+                <pre><code><span class="keyword">use</span> pygame
+<span class="keyword">use</span> math
+<span class="keyword">use</span> random
+
+pygame.init()
+<span class="variable">radice</span> = math.sqrt(<span class="number">16</span>)
+<span class="variable">casuale</span> = random.randint(<span class="number">1</span>, <span class="number">100</span>)</code></pre>
+
+                <h4>Chiamate a Funzioni</h4>
+                <pre><code><span class="keyword">use</span> pygame
+
+pygame.init()
+<span class="variable">screen</span> = pygame.display.set_mode([<span class="number">800</span>, <span class="number">600</span>])
+pygame.display.set_caption(<span class="string">"Finestra TLang"</span>)</code></pre>
+
+                <h4>Accesso ad Attributi</h4>
+                <pre><code><span class="keyword">use</span> pygame
+
+<span class="keyword">int &lt; for &gt;</span> <span class="variable">event</span> <span class="keyword">in</span> pygame.event.get() {
+    <span class="keyword">&lt;&lt; ! &gt;func&gt; if</span> <span class="variable">event</span>.type == pygame.QUIT {
+        <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Chiusura..."</span>
+    }
+}</code></pre>
+
+                <h4>Classi (OOP)</h4>
+                <pre><code><span class="comment">// Definizione classe</span>
+<span class="keyword">&lt;&lt; CRT &gt;&gt;! &gt;class&lt;</span> Persona {
+    <span class="keyword">&lt;&lt; ! C&gt;&gt; New command: {}</span> __init__(self, nome, eta) {
+        self.nome = nome
+        self.eta = eta
+    }
+    
+    <span class="keyword">&lt;&lt; ! C&gt;&gt; New command: {}</span> saluta(self) {
+        <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Ciao, sono "</span> + self.nome
+        <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Ho "</span> + str(self.eta) + <span class="string">" anni"</span>
+    }
+}
+
+<span class="comment">// Creazione istanza</span>
+<span class="variable">var</span> persona = Persona(<span class="string">"Alice"</span>, <span class="number">25</span>)
+persona.saluta()</code></pre>
+            </div>
+
+            <div class="doc-section">
+                <h3>Personalizzazione Sintassi</h3>
+                <p>Modifica <code>config.py</code> per cambiare i comandi:</p>
+                <pre><code><span class="comment"># Esempio: cambiare il comando print</span>
+COMANDO_PRINT = <span class="string">"stampa"</span>  <span class="comment"># Invece di "int &lt;&lt; func &gt;&gt;"</span>
+
+<span class="comment"># Ora puoi usare:</span>
+<span class="keyword">stampa</span> <span class="string">"Ciao!"</span></code></pre>
+
+                <p>Comandi personalizzabili:</p>
+                <ul>
+                    <li><code>COMANDO_PRINT</code> - Stampa output</li>
+                    <li><code>COMANDO_IF</code> - Condizione if</li>
+                    <li><code>COMANDO_ELIF</code> - Condizione elif</li>
+                    <li><code>COMANDO_ELSE</code> - Condizione else</li>
+                    <li><code>COMANDO_WHILE</code> - Loop while</li>
+                    <li><code>COMANDO_FOR</code> - Loop for</li>
+                    <li><code>COMANDO_IN</code> - Operatore in</li>
+                    <li><code>COMANDO_IMPORT</code> - Import librerie</li>
+                    <li><code>COMANDO_TRUE</code> - Booleano true</li>
+                    <li><code>COMANDO_FALSE</code> - Booleano false</li>
+                    <li><code>COMANDO_AND</code> - Operatore AND</li>
+                    <li><code>COMANDO_OR</code> - Operatore OR</li>
+                    <li><code>COMANDO_NOT</code> - Operatore NOT</li>
+                    <li><code>COMANDO_BREAK</code> - Break loop</li>
+                    <li><code>COMANDO_CONTINUE</code> - Continue loop</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h3>IDE Features</h3>
+                <ul>
+                    <li><strong>F5</strong> - Esegui codice</li>
+                    <li><strong>F6</strong> - Modalità Debug (mostra Lexer, Parser, Interpreter)</li>
+                    <li><strong>Ctrl+O</strong> - Apri file</li>
+                    <li><strong>Ctrl+S</strong> - Salva file</li>
+                    <li><strong>Ctrl+N</strong> - Nuovo file</li>
+                    <li><strong>5 Temi</strong> - Dark, Light, Monokai, Matrix, BASIC</li>
+                </ul>
+
+                <h4>Tab Output</h4>
+                <ul>
+                    <li><strong>Output</strong> - Risultato del programma</li>
+                    <li><strong>Debug</strong> - Analisi Lexer, Parser, Interpreter</li>
+                    <li><strong>Variables</strong> - Stato delle variabili</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples" class="examples">
+        <div class="container">
+            <h2>Esempi</h2>
+
+            <div class="example-card">
+                <h3>Hello World</h3>
+                <pre><code><span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Hello, TLang World!"</span></code></pre>
+            </div>
+
+            <div class="example-card">
+                <h3>Calcolatrice</h3>
+                <pre><code><span class="variable">a</span> = <span class="number">15</span>
+<span class="variable">b</span> = <span class="number">7</span>
+
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Somma:"</span>
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">a</span> + <span class="variable">b</span>
+
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Differenza:"</span>
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">a</span> - <span class="variable">b</span>
+
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Prodotto:"</span>
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">a</span> * <span class="variable">b</span>
+
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Divisione:"</span>
+<span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">a</span> / <span class="variable">b</span></code></pre>
+            </div>
+
+            <div class="example-card">
+                <h3>Gioco Snake (Semplificato)</h3>
+                <pre><code><span class="keyword">use</span> pygame
+
+pygame.init()
+<span class="variable">screen</span> = pygame.display.set_mode([<span class="number">600</span>, <span class="number">400</span>])
+pygame.display.set_caption(<span class="string">"Snake Game - TLang"</span>)
+<span class="variable">clock</span> = pygame.time.Clock()
+
+<span class="variable">x</span> = <span class="number">300</span>
+<span class="variable">y</span> = <span class="number">200</span>
+<span class="variable">running</span> = <span class="keyword">on</span>
+
+<span class="keyword">&lt;&lt;While&gt;&gt;! &lt;on&gt;</span> <span class="variable">running</span> {
+    <span class="variable">events</span> = pygame.event.get()
+    
+    <span class="keyword">for</span> <span class="variable">e</span> <span class="keyword">in</span> <span class="variable">events</span> {
+        <span class="keyword">&lt;&lt; ! &gt;func&gt;</span> <span class="variable">e</span>.type == pygame.QUIT {
+            <span class="variable">running</span> = <span class="keyword">off</span>
+        }
+    }
+    
+    <span class="variable">screen</span>.fill([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])
+    pygame.draw.rect(<span class="variable">screen</span>, [<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>], [<span class="variable">x</span>, <span class="variable">y</span>, <span class="number">20</span>, <span class="number">20</span>])
+    pygame.display.flip()
+    <span class="variable">clock</span>.tick(<span class="number">60</span>)
+}
+
+pygame.quit()</code></pre>
+            </div>
+
+            <div class="example-card">
+                <h3>FizzBuzz</h3>
+                <pre><code><span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>] {
+    <span class="keyword">&lt;&lt; ! &gt;func&gt;</span> <span class="variable">i</span> % <span class="number">15</span> == <span class="number">0</span> {
+        <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"FizzBuzz"</span>
+    } <span class="keyword">&lt;&lt; funcc &gt;</span> <span class="variable">i</span> % <span class="number">3</span> == <span class="number">0</span> {
+        <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Fizz"</span>
+    } <span class="keyword">&lt;&lt; funcc &gt;</span> <span class="variable">i</span> % <span class="number">5</span> == <span class="number">0</span> {
+        <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="string">"Buzz"</span>
+    } <span class="keyword">&lt;&lt; fun &gt;</span> {
+        <span class="keyword">int &lt;&lt; func &gt;&gt;</span> <span class="variable">i</span>
+    }
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="download">
+        <div class="container">
+            <h2>Download</h2>
+            <div class="download-card">
+                <h3>TLangIDE v1.0</h3>
+                <p>IDE completo con 5 temi (Dark, Light, Monokai, Matrix, BASIC)</p>
+                <ul>
+                    <li>✅ Nessuna dipendenza esterna</li>
+                    <li>✅ Syntax highlighting</li>
+                    <li>✅ Debug mode integrato</li>
+                    <li>✅ 5 temi personalizzabili</li>
+                    <li>✅ 16.4 MB standalone</li>
+                </ul>
+                <a href="downloads/TLangIDE.exe" class="btn btn-download" download>
+                    📥 Scarica TLangIDE.exe
+                </a>
+                <p class="version-info">Windows 10/11 - 64 bit</p>
+            </div>
+
+            <div class="download-card">
+                <h3>File Associazione</h3>
+                <p>Associa i file .tl a TLangIDE</p>
+                <a href="downloads/associate_tl.bat" class="btn btn-secondary" download>
+                    📥 Scarica associate_tl.bat
+                </a>
+                <p class="version-info">Esegui come Amministratore</p>
+            </div>
+
+            <div class="download-card">
+                <h3>Codice Sorgente</h3>
+                <p>Repository GitHub completo</p>
+                <a href="https://github.com/CostaTech/TencleOS" class="btn btn-secondary" target="_blank">
+                    🔗 GitHub Repository
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TLang. Creato con ❤️</p>
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">Discord</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
