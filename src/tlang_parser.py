@@ -442,6 +442,7 @@ class Parser:
         """Parse: COMANDO_DEF name(params) { body }"""
         self.expect(TokenType.DEF)
         
+        # Sintassi: nome(params)
         if self.current_token().type != TokenType.IDENTIFIER:
             raise ParseError(f"Atteso nome funzione")
         func_name = self.current_token().value

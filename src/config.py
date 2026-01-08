@@ -28,8 +28,8 @@ COMANDO_BREAK = "stop"              # Exit loop: break
 COMANDO_CONTINUE = "continue"        # Skip to next iteration: continue
 
 # FUNCTIONS
-COMANDO_DEF = "<< ! C>> New command: {}"  # Define function: << ! C>> New command: {} myFunc(x, y) { ... }
-COMANDO_RETURN = "return"                  # Return value: return x + y
+COMANDO_DEF = "<< ! C>> New command:"  # Define function: << ! C>> New command: {myFunc(x, y)} { ... }
+COMANDO_RETURN = "return"               # Return value: return x + y
 
 # CLASSES
 COMANDO_CLASS = "<< CRT >>! >class<"      # Define class: << CRT >>! >class< MyClass { ... }
