@@ -51,21 +51,11 @@ def run_file(filename, debug=False):
         if debug:
             print("=== ESECUZIONE ===")
         success = interpreter.run(ast)
-        
-        # Pausa automatica alla fine per evitare chiusura immediata
-        # (utile per eseguire .tl con doppio click)
-        if success:
-            try:
-                input("\nPremi INVIO per chiudere...")
-            except:
-                pass  # Se input fallisce (es. non c'è terminale), ignora
-        
         return success
     except Exception as e:
         print(f"Errore nell'interprete: {e}")
         import traceback
         traceback.print_exc()
-        # Pausa anche in caso di errore
         try:
             input("\nPremi INVIO per chiudere...")
         except:

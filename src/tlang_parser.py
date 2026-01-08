@@ -92,13 +92,6 @@ class FunctionDefNode(ASTNode):
     def __repr__(self):
         return f"FunctionDef({self.name})"
 
-class ClassDefNode(ASTNode):
-    def __init__(self, name, methods):
-        self.name = name
-        self.methods = methods
-    def __repr__(self):
-        return f"ClassDef({self.name})"
-
 class ReturnNode(ASTNode):
     def __init__(self, expression=None):
         self.expression = expression
@@ -158,6 +151,13 @@ class IndexAccessNode(ASTNode):
         self.index = index
     def __repr__(self):
         return f"IndexAccess({self.object}[{self.index}])"
+
+class ClassDefNode(ASTNode):
+    def __init__(self, name, methods):
+        self.name = name
+        self.methods = methods
+    def __repr__(self):
+        return f"ClassDef({self.name}, {len(self.methods)} methods)"
 
 class BlockNode(ASTNode):
     def __init__(self, statements):
@@ -363,9 +363,23 @@ class Parser:
         """Parse: COMANDO_PRINT(expression) - es: int << func >> (expression)"""
         self.expect(TokenType.PRINT)
         self.expect(TokenType.LPAREN)
-        expression = self.parse_expression()
+        
+        # Supporta multipli argomenti separati da virgola
+        expressions = []
+        if self.current_token().type != TokenType.RPAREN:
+            expressions.append(self.parse_expression())
+            while self.current_token().type == TokenType.COMMA:
+                self.advance()  # salta la virgola
+                expressions.append(self.parse_expression())
+        
         self.expect(TokenType.RPAREN)
-        return PrintNode(expression)
+        
+        # Se c'è un solo argomento, ritorna come prima per compatibilità
+        if len(expressions) == 1:
+            return PrintNode(expressions[0])
+        else:
+            # Per multipli argomenti, crea un nodo che li stampa tutti
+            return PrintNode(expressions)
     
     def parse_input_statement(self):
         """Parse: COMANDO_INPUT() - es: input()"""
@@ -378,11 +392,38 @@ class Parser:
         return InputNode(prompt)
     
     def parse_assignment(self):
-        var_name = self.current_token().value
-        self.advance()
-        self.expect(TokenType.EQUALS)
-        expression = self.parse_expression()
-        return AssignNode(var_name, expression)
+        # Può essere una variabile semplice o un accesso attributo (self.x)
+        if self.current_token().type == TokenType.IDENTIFIER:
+            first_part = self.current_token().value
+            self.advance()
+            
+            # Se c'è un punto, è un accesso attributo
+            if self.current_token().type == TokenType.DOT:
+                self.advance()
+                if self.current_token().type != TokenType.IDENTIFIER:
+                    raise ParseError("Atteso nome attributo dopo '.'")
+                attr_name = self.current_token().value
+                self.advance()
+                
+                # Supporta anche più livelli (self.x.y)
+                full_path = f"{first_part}.{attr_name}"
+                while self.current_token().type == TokenType.DOT:
+                    self.advance()
+                    if self.current_token().type != TokenType.IDENTIFIER:
+                        raise ParseError("Atteso nome attributo dopo '.'")
+                    full_path += f".{self.current_token().value}"
+                    self.advance()
+                
+                self.expect(TokenType.EQUALS)
+                expression = self.parse_expression()
+                return AssignNode(full_path, expression)
+            else:
+                # Assegnazione semplice
+                self.expect(TokenType.EQUALS)
+                expression = self.parse_expression()
+                return AssignNode(first_part, expression)
+        else:
+            raise ParseError(f"Atteso identificatore nell'assegnazione")
     
     def parse_if_statement(self):
         self.expect(TokenType.IF)
@@ -442,7 +483,6 @@ class Parser:
         """Parse: COMANDO_DEF name(params) { body }"""
         self.expect(TokenType.DEF)
         
-        # Sintassi: nome(params)
         if self.current_token().type != TokenType.IDENTIFIER:
             raise ParseError(f"Atteso nome funzione")
         func_name = self.current_token().value
@@ -465,7 +505,7 @@ class Parser:
         return FunctionDefNode(func_name, params, body)
     
     def parse_class_def(self):
-        """Parse: COMANDO_CLASS name { methods }"""
+        """Parse: << CRT >>! >class<ClassName { methods }"""
         self.expect(TokenType.CLASS)
         
         if self.current_token().type != TokenType.IDENTIFIER:
@@ -482,14 +522,18 @@ class Parser:
             if self.current_token().type == TokenType.EOF:
                 raise ParseError("Errore: classe non chiusa, manca }")
             
-            # Ogni metodo inizia con << ! C>> New command: {}
+            # Salta newline
+            if self.current_token().type == TokenType.NEWLINE:
+                self.advance()
+                continue
+            
+            # Ogni metodo inizia con DEF (che corrisponde a << ! C>> New command:)
             if self.current_token().type == TokenType.DEF:
                 method = self.parse_function_def()
                 methods.append(method)
             else:
-                self.advance()
-            
-            self.skip_newlines()
+                # Token non riconosciuto dentro la classe
+                raise ParseError(f"Errore: token inaspettato dentro la classe: {self.current_token().type}")
         
         self.expect(TokenType.RBRACE)
         return ClassDefNode(class_name, methods)
@@ -579,22 +623,24 @@ class Parser:
             return ReturnNode(expr)
         
         if token.type == TokenType.IDENTIFIER:
-            # Guarda avanti per capire se è assegnamento o espressione
+            # Controlla se è un'assegnazione (var = o self.attr =)
             if self.peek_token().type == TokenType.EQUALS:
-                # Assegnamento semplice: x = value
                 return self.parse_assignment()
+            elif self.peek_token().type == TokenType.DOT:
+                # Potrebbe essere self.x = valore
+                # Salva posizione e prova a parsare come assegnazione
+                saved_pos = self.pos
+                try:
+                    # Prova a parsare come assegnazione attributo
+                    return self.parse_assignment()
+                except:
+                    # Se fallisce, ripristina e tratta come expression
+                    self.pos = saved_pos
+                    expr = self.parse_expression()
+                    return expr
             else:
-                # Potrebbe essere: self.x = value, o funzione, o solo variabile
+                # Chiamata di funzione standalone o altra expression
                 expr = self.parse_expression()
-                
-                # Se dopo l'espressione c'è =, è un assegnamento ad attributo
-                if self.current_token().type == TokenType.EQUALS:
-                    if not isinstance(expr, (AttributeAccessNode, IndexAccessNode)):
-                        raise ParseError(f"Assegnamento invalido alla riga {token.line}")
-                    self.advance()  # Salta =
-                    value = self.parse_expression()
-                    return AssignNode(expr, value)
-                
                 return expr
         
         if token.type == TokenType.VAR:

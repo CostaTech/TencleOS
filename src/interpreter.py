@@ -100,9 +100,18 @@ class Interpreter:
             raise RuntimeError(f"Errore: operatore unario '{op}' non supportato")
     
     def visit_PrintNode(self, node):
-        value = self.visit(node.expression)
         import sys
-        sys.stdout.write(str(value) + '\n')
+        
+        # Supporta sia singola espressione che lista di espressioni
+        if isinstance(node.expression, list):
+            # Multipli argomenti
+            values = [str(self.visit(expr)) for expr in node.expression]
+            sys.stdout.write(' '.join(values) + '\n')
+        else:
+            # Singolo argomento
+            value = self.visit(node.expression)
+            sys.stdout.write(str(value) + '\n')
+        
         sys.stdout.flush()
         return None
     
@@ -131,23 +140,31 @@ class Interpreter:
             raise RuntimeError(f"Errore launch(): {e}")
     
     def visit_AssignNode(self, node):
+        var_name = node.variable_name
         value = self.visit(node.expression)
         
-        # Se è un assegnamento ad attributo (self.x = value)
-        if isinstance(node.variable_name, AttributeAccessNode):
-            obj = self.visit(node.variable_name.object)
-            attr_name = node.variable_name.attribute
+        # Se è un'assegnazione a un attributo (self.x)
+        if '.' in var_name:
+            parts = var_name.split('.', 1)
+            obj_name = parts[0]
+            attr_name = parts[1]
             
-            # Se è un'istanza TLang
-            if isinstance(obj, dict) and '__class__' in obj:
-                obj[attr_name] = value
-                return None
-            # Altrimenti è un oggetto Python
-            setattr(obj, attr_name, value)
-            return None
+            if obj_name in self.variables:
+                obj = self.variables[obj_name]
+                
+                # Se è un oggetto TLang
+                if isinstance(obj, dict) and '__attrs__' in obj:
+                    obj['__attrs__'][attr_name] = value
+                    return None
+                
+                # Altrimenti prova con setattr (oggetti Python)
+                try:
+                    setattr(obj, attr_name, value)
+                    return None
+                except Exception as e:
+                    raise RuntimeError(f"Errore nell'assegnazione attributo: {e}")
         
-        # Assegnamento normale
-        var_name = node.variable_name
+        # Assegnazione normale
         self.variables[var_name] = value
         return None
     
@@ -221,42 +238,15 @@ class Interpreter:
         return None
     
     def visit_ClassDefNode(self, node):
-        # Crea una classe Python dinamica
-        class_methods = {}
+        """Gestisce la definizione di una classe"""
+        # Crea un dizionario per i metodi della classe
+        methods = {}
         for method in node.methods:
-            class_methods[method.name] = ('function', method.params, method.body)
+            if hasattr(method, 'name'):
+                methods[method.name] = ('function', method.params, method.body)
         
-        # Salva la classe come factory function
-        def class_constructor(*args):
-            # Crea un'istanza (dizionario con metodi e attributi)
-            instance = {'__class__': node.name, '__methods__': class_methods.copy()}
-            
-            # Chiama __init__ se esiste
-            if '__init__' in class_methods:
-                init_func = class_methods['__init__']
-                _, params, body = init_func
-                
-                # Crea scope temporaneo
-                old_vars = self.variables.copy()
-                self.variables['self'] = instance
-                
-                # Assegna parametri (escluso self)
-                for i, param in enumerate(params[1:]):  # Salta 'self'
-                    if i < len(args):
-                        self.variables[param] = args[i]
-                
-                # Esegui __init__
-                try:
-                    self.visit(body)
-                except ReturnException:
-                    pass
-                
-                # Ripristina scope
-                self.variables = old_vars
-            
-            return instance
-        
-        self.variables[node.name] = class_constructor
+        # Salva la classe come un tipo speciale nel dizionario delle variabili
+        self.variables[node.name] = ('class', methods)
         return None
     
     def visit_ReturnNode(self, node):
@@ -284,7 +274,7 @@ class Interpreter:
             raise RuntimeError(f"Errore: impossibile importare modulo '{module_name}': {e}")
     
     def visit_FunctionCallNode(self, node):
-        """Chiamata funzione"""
+        """Chiamata funzione o costruttore di classe"""
         # Check if it's a built-in function
         if isinstance(node.function, VariableNode) and node.function.name == 'launch':
             args = [self.visit(arg) for arg in node.args]
@@ -298,33 +288,42 @@ class Interpreter:
         # Valuta gli argomenti
         args = [self.visit(arg) for arg in node.args]
         
-        # Se è un metodo di un'istanza TLang (tupla con 'method')
-        if isinstance(function, tuple) and function[0] == 'method':
-            _, instance, method_name = function
-            method_func = instance['__methods__'][method_name]
-            _, params, body = method_func
+        # Se è una classe TLang (costruttore)
+        if isinstance(function, tuple) and function[0] == 'class':
+            _, methods = function
             
-            # Crea nuovo scope
-            old_vars = self.variables.copy()
-            self.variables['self'] = instance
+            # Crea un nuovo oggetto (dizionario con metodi e attributi)
+            obj = {'__methods__': methods, '__attrs__': {}}
             
-            # Assegna parametri (escluso self)
-            for i, param in enumerate(params[1:]):  # Salta 'self'
-                if i < len(args):
-                    self.variables[param] = args[i]
+            # Se c'è un metodo __init__, chiamalo
+            if '__init__' in methods:
+                init_type, init_params, init_body = methods['__init__']
+                
+                # Crea scope per __init__
+                old_vars = self.variables.copy()
+                
+                # Assegna 'self' come riferimento all'oggetto
+                self.variables['self'] = obj
+                
+                # Assegna parametri (salta 'self' che è già assegnato)
+                if len(args) != len(init_params) - 1:
+                    raise RuntimeError(f"Errore: __init__ richiede {len(init_params)-1} argomenti, ne sono stati passati {len(args)}")
+                
+                for param, arg in zip(init_params[1:], args):
+                    self.variables[param] = arg
+                
+                # Esegui __init__
+                try:
+                    self.visit(init_body)
+                except ReturnException:
+                    pass  # __init__ non dovrebbe ritornare valori
+                
+                # Ripristina scope
+                self.variables = old_vars
             
-            # Esegui metodo
-            result = None
-            try:
-                self.visit(body)
-            except ReturnException as e:
-                result = e.value
-            
-            # Ripristina scope
-            self.variables = old_vars
-            return result
+            return obj
         
-        # Se è una funzione TLang normale
+        # Se è una funzione TLang
         if isinstance(function, tuple) and function[0] == 'function':
             _, params, body = function
             
@@ -349,7 +348,7 @@ class Interpreter:
             self.variables = old_vars
             return result
         
-        # Altrimenti è una funzione Python o costruttore classe
+        # Altrimenti è una funzione Python
         try:
             return function(*args)
         except Exception as e:
@@ -360,15 +359,46 @@ class Interpreter:
         obj = self.visit(node.object)
         attr_name = node.attribute
         
-        # Se è un'istanza TLang
-        if isinstance(obj, dict) and '__class__' in obj:
-            # Cerca nei metodi
+        # Se è un oggetto TLang (dizionario con __methods__ e __attrs__)
+        if isinstance(obj, dict) and '__methods__' in obj and '__attrs__' in obj:
+            # Prima cerca negli attributi
+            if attr_name in obj['__attrs__']:
+                return obj['__attrs__'][attr_name]
+            
+            # Poi cerca nei metodi
             if attr_name in obj['__methods__']:
-                return ('method', obj, attr_name)
-            # Cerca negli attributi dell'istanza
-            if attr_name in obj:
-                return obj[attr_name]
-            raise RuntimeError(f"Errore: istanza di '{obj['__class__']}' non ha attributo/metodo '{attr_name}'")
+                method = obj['__methods__'][attr_name]
+                # Ritorna una funzione che lega 'self' all'oggetto
+                def bound_method(*args):
+                    method_type, params, body = method
+                    
+                    # Crea nuovo scope
+                    old_vars = self.variables.copy()
+                    
+                    # Assegna 'self'
+                    self.variables['self'] = obj
+                    
+                    # Assegna parametri (salta 'self')
+                    if len(args) != len(params) - 1:
+                        raise RuntimeError(f"Errore: metodo richiede {len(params)-1} argomenti, ne sono stati passati {len(args)}")
+                    
+                    for param, arg in zip(params[1:], args):
+                        self.variables[param] = arg
+                    
+                    # Esegui corpo metodo
+                    result = None
+                    try:
+                        self.visit(body)
+                    except ReturnException as e:
+                        result = e.value
+                    
+                    # Ripristina scope
+                    self.variables = old_vars
+                    return result
+                
+                return bound_method
+            
+            raise RuntimeError(f"Errore: oggetto non ha attributo o metodo '{attr_name}'")
         
         # Altrimenti è un oggetto Python
         try:
